@@ -1,6 +1,6 @@
 import { z } from "zod"
 import { fn } from "./util/fn"
-import { Resource } from "@opencode-ai/console-resource"
+import { Resource } from "@opensow-ai/console-resource"
 import { centsToMicroCents } from "./util/price"
 import { getWeekBounds } from "./util/date"
 import { SubscriptionPlan } from "./schema/billing.sql"

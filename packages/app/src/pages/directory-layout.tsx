@@ -4,12 +4,12 @@ import { SDKProvider, useSDK } from "@/context/sdk"
 import { SyncProvider, useSync } from "@/context/sync"
 import { LocalProvider } from "@/context/local"
 
-import { DataProvider } from "@opencode-ai/ui/context"
-import { iife } from "@opencode-ai/util/iife"
-import type { QuestionAnswer } from "@opencode-ai/sdk/v2"
 import { decode64 } from "@/utils/base64"
-import { showToast } from "@opencode-ai/ui/toast"
+import { showToast } from "@opensow-ai/ui/toast"
 import { useLanguage } from "@/context/language"
+import { DataProvider } from "@opensow-ai/ui/context"
+import { iife } from "@opensow-ai/util/iife"
+import type { QuestionAnswer } from "@opensow-ai/sdk/v2"
 
 export default function Layout(props: ParentProps) {
   const params = useParams()

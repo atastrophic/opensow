@@ -19,20 +19,20 @@ import { selectionFromLines, useFile, type FileSelection, type SelectedLineRange
 import { createStore } from "solid-js/store"
 import { PromptInput } from "@/components/prompt-input"
 import { SessionContextUsage } from "@/components/session-context-usage"
-import { IconButton } from "@opencode-ai/ui/icon-button"
-import { Button } from "@opencode-ai/ui/button"
-import { Icon } from "@opencode-ai/ui/icon"
-import { Tooltip, TooltipKeybind } from "@opencode-ai/ui/tooltip"
-import { DiffChanges } from "@opencode-ai/ui/diff-changes"
-import { ResizeHandle } from "@opencode-ai/ui/resize-handle"
-import { Tabs } from "@opencode-ai/ui/tabs"
-import { useCodeComponent } from "@opencode-ai/ui/context/code"
-import { LineComment as LineCommentView, LineCommentEditor } from "@opencode-ai/ui/line-comment"
-import { SessionTurn } from "@opencode-ai/ui/session-turn"
-import { BasicTool } from "@opencode-ai/ui/basic-tool"
-import { createAutoScroll } from "@opencode-ai/ui/hooks"
-import { SessionReview } from "@opencode-ai/ui/session-review"
-import { Mark } from "@opencode-ai/ui/logo"
+import { IconButton } from "@opensow-ai/ui/icon-button"
+import { Button } from "@opensow-ai/ui/button"
+import { Icon } from "@opensow-ai/ui/icon"
+import { Tooltip, TooltipKeybind } from "@opensow-ai/ui/tooltip"
+import { DiffChanges } from "@opensow-ai/ui/diff-changes"
+import { ResizeHandle } from "@opensow-ai/ui/resize-handle"
+import { Tabs } from "@opensow-ai/ui/tabs"
+import { useCodeComponent } from "@opensow-ai/ui/context/code"
+import { LineComment as LineCommentView, LineCommentEditor } from "@opensow-ai/ui/line-comment"
+import { SessionTurn } from "@opensow-ai/ui/session-turn"
+import { BasicTool } from "@opensow-ai/ui/basic-tool"
+import { createAutoScroll } from "@opensow-ai/ui/hooks"
+import { SessionReview } from "@opensow-ai/ui/session-review"
+import { Mark } from "@opensow-ai/ui/logo"
 
 import { DragDropProvider, DragDropSensors, DragOverlay, SortableProvider, closestCenter } from "@thisbeyond/solid-dnd"
 import type { DragEvent } from "@thisbeyond/solid-dnd"
@@ -40,9 +40,9 @@ import { useSync } from "@/context/sync"
 import { useTerminal, type LocalPTY } from "@/context/terminal"
 import { useLayout } from "@/context/layout"
 import { Terminal } from "@/components/terminal"
-import { checksum, base64Encode } from "@opencode-ai/util/encode"
-import { findLast } from "@opencode-ai/util/array"
-import { useDialog } from "@opencode-ai/ui/context/dialog"
+import { checksum, base64Encode } from "@opensow-ai/util/encode"
+import { findLast } from "@opensow-ai/util/array"
+import { useDialog } from "@opensow-ai/ui/context/dialog"
 import { DialogSelectFile } from "@/components/dialog-select-file"
 import FileTree from "@/components/file-tree"
 import { DialogSelectModel } from "@/components/dialog-select-model"
@@ -51,8 +51,8 @@ import { DialogFork } from "@/components/dialog-fork"
 import { useCommand } from "@/context/command"
 import { useLanguage } from "@/context/language"
 import { useNavigate, useParams } from "@solidjs/router"
-import { UserMessage } from "@opencode-ai/sdk/v2"
-import type { FileDiff } from "@opencode-ai/sdk/v2/client"
+import { UserMessage } from "@opensow-ai/sdk/v2"
+import type { FileDiff } from "@opensow-ai/sdk/v2/client"
 import { useSDK } from "@/context/sdk"
 import { usePrompt } from "@/context/prompt"
 import { useComments, type LineComment } from "@/context/comments"
@@ -60,7 +60,8 @@ import { extractPromptFromParts } from "@/utils/prompt"
 import { ConstrainDragYAxis, getDraggableId } from "@/utils/solid-dnd"
 import { usePermission } from "@/context/permission"
 import { decode64 } from "@/utils/base64"
-import { showToast } from "@opencode-ai/ui/toast"
+import { showToast } from "@opensow-ai/ui/toast"
+
 import {
   SessionHeader,
   SessionContextTab,
@@ -822,7 +823,7 @@ export default function Page() {
         const sessionID = params.id
         if (!sessionID) return
         if (status()?.type !== "idle") {
-          await sdk.client.session.abort({ sessionID }).catch(() => {})
+          await sdk.client.session.abort({ sessionID }).catch(() => { })
         }
         const revert = info()?.revert?.messageID
         // Find the last user message that's not already reverted
@@ -905,69 +906,69 @@ export default function Page() {
     },
     ...(sync.data.config.share !== "disabled"
       ? [
-          {
-            id: "session.share",
-            title: language.t("command.session.share"),
-            description: language.t("command.session.share.description"),
-            category: language.t("command.category.session"),
-            slash: "share",
-            disabled: !params.id || !!info()?.share?.url,
-            onSelect: async () => {
-              if (!params.id) return
-              await sdk.client.session
-                .share({ sessionID: params.id })
-                .then((res) => {
-                  navigator.clipboard.writeText(res.data!.share!.url).catch(() =>
-                    showToast({
-                      title: language.t("toast.session.share.copyFailed.title"),
-                      variant: "error",
-                    }),
-                  )
-                })
-                .then(() =>
+        {
+          id: "session.share",
+          title: language.t("command.session.share"),
+          description: language.t("command.session.share.description"),
+          category: language.t("command.category.session"),
+          slash: "share",
+          disabled: !params.id || !!info()?.share?.url,
+          onSelect: async () => {
+            if (!params.id) return
+            await sdk.client.session
+              .share({ sessionID: params.id })
+              .then((res) => {
+                navigator.clipboard.writeText(res.data!.share!.url).catch(() =>
                   showToast({
-                    title: language.t("toast.session.share.success.title"),
-                    description: language.t("toast.session.share.success.description"),
-                    variant: "success",
-                  }),
-                )
-                .catch(() =>
-                  showToast({
-                    title: language.t("toast.session.share.failed.title"),
-                    description: language.t("toast.session.share.failed.description"),
+                    title: language.t("toast.session.share.copyFailed.title"),
                     variant: "error",
                   }),
                 )
-            },
+              })
+              .then(() =>
+                showToast({
+                  title: language.t("toast.session.share.success.title"),
+                  description: language.t("toast.session.share.success.description"),
+                  variant: "success",
+                }),
+              )
+              .catch(() =>
+                showToast({
+                  title: language.t("toast.session.share.failed.title"),
+                  description: language.t("toast.session.share.failed.description"),
+                  variant: "error",
+                }),
+              )
           },
-          {
-            id: "session.unshare",
-            title: language.t("command.session.unshare"),
-            description: language.t("command.session.unshare.description"),
-            category: language.t("command.category.session"),
-            slash: "unshare",
-            disabled: !params.id || !info()?.share?.url,
-            onSelect: async () => {
-              if (!params.id) return
-              await sdk.client.session
-                .unshare({ sessionID: params.id })
-                .then(() =>
-                  showToast({
-                    title: language.t("toast.session.unshare.success.title"),
-                    description: language.t("toast.session.unshare.success.description"),
-                    variant: "success",
-                  }),
-                )
-                .catch(() =>
-                  showToast({
-                    title: language.t("toast.session.unshare.failed.title"),
-                    description: language.t("toast.session.unshare.failed.description"),
-                    variant: "error",
-                  }),
-                )
-            },
+        },
+        {
+          id: "session.unshare",
+          title: language.t("command.session.unshare"),
+          description: language.t("command.session.unshare.description"),
+          category: language.t("command.category.session"),
+          slash: "unshare",
+          disabled: !params.id || !info()?.share?.url,
+          onSelect: async () => {
+            if (!params.id) return
+            await sdk.client.session
+              .unshare({ sessionID: params.id })
+              .then(() =>
+                showToast({
+                  title: language.t("toast.session.unshare.success.title"),
+                  description: language.t("toast.session.unshare.success.description"),
+                  variant: "success",
+                }),
+              )
+              .catch(() =>
+                showToast({
+                  title: language.t("toast.session.unshare.failed.title"),
+                  description: language.t("toast.session.unshare.failed.description"),
+                  variant: "error",
+                }),
+              )
           },
-        ]
+        },
+      ]
       : []),
   ])
 
@@ -1239,7 +1240,7 @@ export default function Page() {
 
     const wants = isDesktop()
       ? view().reviewPanel.opened() &&
-        (layout.fileTree.opened() ? fileTreeTab() === "changes" : activeTab() === "review")
+      (layout.fileTree.opened() ? fileTreeTab() === "changes" : activeTab() === "review")
       : store.mobileTab === "review"
     if (!wants) return
     if (diffsReady()) return
@@ -1388,7 +1389,7 @@ export default function Page() {
   createEffect(() => {
     const sessionID = params.id
     if (!sessionID) return
-    const raw = sessionStorage.getItem("opencode.pendingMessage")
+    const raw = sessionStorage.getItem("opensow.pendingMessage")
     if (!raw) return
     const parts = raw.split("|")
     const pendingSessionID = parts[0]
@@ -1396,7 +1397,7 @@ export default function Page() {
     if (!pendingSessionID || !messageID) return
     if (pendingSessionID !== sessionID) return
 
-    sessionStorage.removeItem("opencode.pendingMessage")
+    sessionStorage.removeItem("opensow.pendingMessage")
     setUi("pendingMessage", messageID)
   })
 

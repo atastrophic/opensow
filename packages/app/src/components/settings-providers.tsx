@@ -1,9 +1,9 @@
-import { Button } from "@opencode-ai/ui/button"
-import { useDialog } from "@opencode-ai/ui/context/dialog"
-import { ProviderIcon } from "@opencode-ai/ui/provider-icon"
-import { Tag } from "@opencode-ai/ui/tag"
-import { showToast } from "@opencode-ai/ui/toast"
-import type { IconName } from "@opencode-ai/ui/icons/provider"
+import { Button } from "@opensow-ai/ui/button"
+import { useDialog } from "@opensow-ai/ui/context/dialog"
+import { ProviderIcon } from "@opensow-ai/ui/provider-icon"
+import { Tag } from "@opensow-ai/ui/tag"
+import { showToast } from "@opensow-ai/ui/toast"
+import type { IconName } from "@opensow-ai/ui/icons/provider"
 import { popularProviders, useProviders } from "@/hooks/use-providers"
 import { createMemo, type Component, For, Show } from "solid-js"
 import { useLanguage } from "@/context/language"
@@ -23,7 +23,7 @@ export const SettingsProviders: Component = () => {
   const connected = createMemo(() => {
     return providers
       .connected()
-      .filter((p) => p.id !== "opencode" || Object.values(p.models).find((m) => m.cost?.input))
+      .filter((p) => p.id !== "opensow" || Object.values(p.models).find((m) => m.cost?.input))
   })
 
   const popular = createMemo(() => {
@@ -124,13 +124,13 @@ export const SettingsProviders: Component = () => {
                     <div class="flex items-center gap-x-3">
                       <ProviderIcon id={item.id as IconName} class="size-5 shrink-0 icon-strong-base" />
                       <span class="text-14-medium text-text-strong">{item.name}</span>
-                      <Show when={item.id === "opencode"}>
+                      <Show when={item.id === "opensow"}>
                         <Tag>{language.t("dialog.provider.tag.recommended")}</Tag>
                       </Show>
                     </div>
-                    <Show when={item.id === "opencode"}>
+                    <Show when={item.id === "opensow"}>
                       <span class="text-12-regular text-text-weak pl-8">
-                        {language.t("dialog.provider.opencode.note")}
+                        {language.t("dialog.provider.opensow.note")}
                       </span>
                     </Show>
                     <Show when={item.id === "anthropic"}>

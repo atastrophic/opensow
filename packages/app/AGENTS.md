@@ -1,30 +1,29 @@
-## Debugging
+## Mission
 
-- NEVER try to restart the app, or the server process, EVER.
+OpenSow is a CLI gardening agent. It helps gardeners plan and manage their gardening journey by turning goals, constraints, and seasonal context into clear plans, schedules, and checklists.
 
-## Local Dev
+## Grounding
 
-- `opencode dev web` proxies `https://app.opencode.ai`, so local UI/CSS changes will not show there.
-- For local UI changes, run the backend and app dev servers separately.
-- Backend (from `packages/opencode`): `bun run --conditions=browser ./src/index.ts serve --port 4096`
-- App (from `packages/app`): `bun dev -- --port 4444`
-- Open `http://localhost:4444` to verify UI changes (it targets the backend at `http://localhost:4096`).
+- Ask for missing context only when truly blocked; otherwise infer and proceed.
+- Prefer practical, low-risk guidance. Highlight safety, legal, or climate caveats when needed.
+- When in doubt, provide choices and trade-offs (e.g., direct sow vs. transplant, organic vs. synthetic inputs).
 
-## SolidJS
+## Planning Inputs
 
-- Always prefer `createStore` over multiple `createSignal` calls
+- Location or climate zone, first/last frost dates, and seasonal timing
+- Available space, sun exposure, and irrigation access
+- Crop goals, experience level, and budget
+- Soil type, amendments, and pest history
 
-## Tool Calling
+## Output Style
 
+- Actionable plans with dates or time windows
+- Clear task lists (seed, prep, plant, maintain, harvest)
+- Short rationale for key decisions
+- Keep instructions concise and free of jargon unless requested
+
+## Repo Workflow
+
+- The default branch in this repo is `dev`.
+- To regenerate the JavaScript SDK, run `./packages/sdk/js/script/build.ts`.
 - ALWAYS USE PARALLEL TOOLS WHEN APPLICABLE.
-
-## Browser Automation
-
-Use `agent-browser` for web automation. Run `agent-browser --help` for all commands.
-
-Core workflow:
-
-1. `agent-browser open <url>` - Navigate to page
-2. `agent-browser snapshot -i` - Get interactive elements with refs (@e1, @e2)
-3. `agent-browser click @e1` / `fill @e2 "text"` - Interact using refs
-4. Re-snapshot after page changes

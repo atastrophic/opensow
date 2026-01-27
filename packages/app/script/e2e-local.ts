@@ -44,7 +44,7 @@ async function waitForHealth(url: string) {
 
 const appDir = process.cwd()
 const repoDir = path.resolve(appDir, "../..")
-const opencodeDir = path.join(repoDir, "packages", "opencode")
+const opensowDir = path.join(repoDir, "packages", "opensow")
 
 const extraArgs = (() => {
   const args = process.argv.slice(2)
@@ -54,7 +54,7 @@ const extraArgs = (() => {
 
 const [serverPort, webPort] = await Promise.all([freePort(), freePort()])
 
-const sandbox = await fs.mkdtemp(path.join(os.tmpdir(), "opencode-e2e-"))
+const sandbox = await fs.mkdtemp(path.join(os.tmpdir(), "opensow-e2e-"))
 
 const serverEnv = {
   ...process.env,
@@ -70,7 +70,7 @@ const serverEnv = {
   OPENCODE_E2E_PROJECT_DIR: repoDir,
   OPENCODE_E2E_SESSION_TITLE: "E2E Session",
   OPENCODE_E2E_MESSAGE: "Seeded for UI e2e",
-  OPENCODE_E2E_MODEL: "opencode/gpt-5-nano",
+  OPENCODE_E2E_MODEL: "opensow/gpt-5-nano",
   OPENCODE_CLIENT: "app",
 } satisfies Record<string, string>
 
@@ -84,7 +84,7 @@ const runnerEnv = {
 } satisfies Record<string, string>
 
 const seed = Bun.spawn(["bun", "script/seed-e2e.ts"], {
-  cwd: opencodeDir,
+  cwd: opensowDir,
   env: serverEnv,
   stdout: "inherit",
   stderr: "inherit",
@@ -99,18 +99,18 @@ Object.assign(process.env, serverEnv)
 process.env.AGENT = "1"
 process.env.OPENCODE = "1"
 
-const log = await import("../../opencode/src/util/log")
-const install = await import("../../opencode/src/installation")
+const log = await import("../../opensow/src/util/log")
+const install = await import("../../opensow/src/installation")
 await log.Log.init({
   print: true,
   dev: install.Installation.isLocal(),
   level: "WARN",
 })
 
-const servermod = await import("../../opencode/src/server/server")
-const inst = await import("../../opencode/src/project/instance")
+const servermod = await import("../../opensow/src/server/server")
+const inst = await import("../../opensow/src/project/instance")
 const server = servermod.Server.listen({ port: serverPort, hostname: "127.0.0.1" })
-console.log(`opencode server listening on http://127.0.0.1:${serverPort}`)
+console.log(`opensow server listening on http://127.0.0.1:${serverPort}`)
 
 const result = await (async () => {
   try {

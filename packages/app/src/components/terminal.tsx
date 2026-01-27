@@ -4,9 +4,9 @@ import { useSDK } from "@/context/sdk"
 import { monoFontFamily, useSettings } from "@/context/settings"
 import { SerializeAddon } from "@/addons/serialize"
 import { LocalPTY } from "@/context/terminal"
-import { resolveThemeVariant, useTheme, withAlpha, type HexColor } from "@opencode-ai/ui/theme"
 import { useLanguage } from "@/context/language"
-import { showToast } from "@opencode-ai/ui/toast"
+import { showToast } from "@opensow-ai/ui/toast"
+import { resolveThemeVariant, useTheme, withAlpha, type HexColor } from "@opensow-ai/ui/theme"
 
 export interface TerminalProps extends ComponentProps<"div"> {
   pty: LocalPTY
@@ -134,7 +134,7 @@ export const Terminal = (props: TerminalProps) => {
 
       const url = new URL(sdk.url + `/pty/${local.pty.id}/connect?directory=${encodeURIComponent(sdk.directory)}`)
       if (window.__OPENCODE__?.serverPassword) {
-        url.username = "opencode"
+        url.username = "opensow"
         url.password = window.__OPENCODE__?.serverPassword
       }
       const socket = new WebSocket(url)
@@ -172,7 +172,7 @@ export const Terminal = (props: TerminalProps) => {
 
         const clipboard = navigator.clipboard
         if (clipboard?.writeText) {
-          clipboard.writeText(selection).catch(() => {})
+          clipboard.writeText(selection).catch(() => { })
           return true
         }
 
@@ -246,7 +246,7 @@ export const Terminal = (props: TerminalProps) => {
                 rows: size.rows,
               },
             })
-            .catch(() => {})
+            .catch(() => { })
         }
       })
       t.onData((data) => {
@@ -272,7 +272,7 @@ export const Terminal = (props: TerminalProps) => {
               rows: t.rows,
             },
           })
-          .catch(() => {})
+          .catch(() => { })
       })
       socket.addEventListener("message", (event) => {
         t.write(event.data)

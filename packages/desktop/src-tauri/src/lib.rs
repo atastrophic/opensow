@@ -25,7 +25,7 @@ use tokio::sync::oneshot;
 
 use crate::window_customizer::PinchZoomDisablePlugin;
 
-const SETTINGS_STORE: &str = "opencode.settings.dat";
+const SETTINGS_STORE: &str = "opensow.settings.dat";
 const DEFAULT_SERVER_URL_KEY: &str = "defaultServerUrl";
 
 #[derive(Clone, serde::Serialize)]
@@ -162,10 +162,10 @@ fn spawn_sidecar(app: &AppHandle, hostname: &str, port: u32, password: &str) -> 
         app,
         format!("serve --hostname {hostname} --port {port}").as_str(),
     )
-    .env("OPENCODE_SERVER_USERNAME", "opencode")
+    .env("OPENCODE_SERVER_USERNAME", "opensow")
     .env("OPENCODE_SERVER_PASSWORD", password)
     .spawn()
-    .expect("Failed to spawn opencode");
+    .expect("Failed to spawn opensow");
 
     tauri::async_runtime::spawn(async move {
         while let Some(event) = rx.recv().await {
@@ -237,7 +237,7 @@ async fn check_server_health(url: &str, password: Option<&str>) -> bool {
     let mut req = client.get(health_url);
 
     if let Some(password) = password {
-        req = req.basic_auth("opencode", Some(password));
+        req = req.basic_auth("opensow", Some(password));
     }
 
     req.send()
@@ -252,7 +252,7 @@ pub fn run() {
 
     #[cfg(all(target_os = "macos", not(debug_assertions)))]
     let _ = std::process::Command::new("killall")
-        .arg("opencode-cli")
+        .arg("opensow-cli")
         .output();
 
     let mut builder = tauri::Builder::default()
@@ -513,7 +513,7 @@ async fn spawn_local_server(
     loop {
         if timestamp.elapsed() > Duration::from_secs(30) {
             break Err(format!(
-                "Failed to spawn OpenCode Server. Logs:\n{}",
+                "Failed to spawn OpenSow Server. Logs:\n{}",
                 get_logs(app.clone()).await.unwrap()
             ));
         }

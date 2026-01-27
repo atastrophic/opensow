@@ -61,5 +61,5 @@ fn main() {
         }
     }
 
-    opencode_lib::run()
+    opensow_lib::run()
 }

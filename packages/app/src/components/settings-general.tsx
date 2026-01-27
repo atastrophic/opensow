@@ -1,7 +1,7 @@
 import { Component, createMemo, type JSX } from "solid-js"
-import { Select } from "@opencode-ai/ui/select"
-import { Switch } from "@opencode-ai/ui/switch"
-import { useTheme, type ColorScheme } from "@opencode-ai/ui/theme"
+import { Select } from "@opensow-ai/ui/select"
+import { Switch } from "@opensow-ai/ui/switch"
+import { useTheme, type ColorScheme } from "@opensow-ai/ui/theme"
 import { useLanguage } from "@/context/language"
 import { useSettings, monoFontFamily } from "@/context/settings"
 import { playSound, SOUND_OPTIONS } from "@/utils/sound"
@@ -122,7 +122,7 @@ export const SettingsGeneral: Component = () => {
               description={
                 <>
                   {language.t("settings.general.row.theme.description")}{" "}
-                  <Link href="https://opencode.ai/docs/themes/">{language.t("common.learnMore")}</Link>
+                  <Link href="https://opensow.ai/docs/themes/">{language.t("common.learnMore")}</Link>
                 </>
               }
             >

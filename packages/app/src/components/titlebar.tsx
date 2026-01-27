@@ -1,11 +1,12 @@
 import { createEffect, createMemo, Show, untrack } from "solid-js"
 import { createStore } from "solid-js/store"
 import { useLocation, useNavigate } from "@solidjs/router"
-import { IconButton } from "@opencode-ai/ui/icon-button"
-import { Icon } from "@opencode-ai/ui/icon"
-import { Button } from "@opencode-ai/ui/button"
-import { Tooltip, TooltipKeybind } from "@opencode-ai/ui/tooltip"
-import { useTheme } from "@opencode-ai/ui/theme"
+
+import { IconButton } from "@opensow-ai/ui/icon-button"
+import { Icon } from "@opensow-ai/ui/icon"
+import { Button } from "@opensow-ai/ui/button"
+import { TooltipKeybind } from "@opensow-ai/ui/tooltip"
+import { useTheme } from "@opensow-ai/ui/theme"
 
 import { useLayout } from "@/context/layout"
 import { usePlatform } from "@/context/platform"
@@ -214,13 +215,13 @@ export function Titlebar() {
                 onClick={forward}
                 aria-label={language.t("common.goForward")}
               />
-            </Tooltip>
-          </div>
-        </div>
-        <div id="opencode-titlebar-left" class="flex items-center gap-3 min-w-0 px-2" data-tauri-drag-region />
+            </Tooltip >
+          </div >
+        </div >
+        <div id="opensow-titlebar-left" class="flex items-center gap-3 min-w-0 px-2" data-tauri-drag-region />
         <div class="flex-1 h-full" data-tauri-drag-region />
         <div
-          id="opencode-titlebar-right"
+          id="opensow-titlebar-right"
           class="flex items-center gap-3 shrink-0 flex-1 justify-end"
           data-tauri-drag-region
         />
@@ -228,10 +229,10 @@ export function Titlebar() {
           <div class="w-6 shrink-0" />
           <div data-tauri-decorum-tb class="flex flex-row" />
         </Show>
-      </div>
+      </div >
       <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div id="opencode-titlebar-center" class="pointer-events-auto" />
+        <div id="opensow-titlebar-center" class="pointer-events-auto" />
       </div>
-    </header>
+    </header >
   )
 }

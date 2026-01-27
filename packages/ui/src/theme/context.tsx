@@ -8,10 +8,10 @@ import { createSimpleContext } from "../context/helper"
 export type ColorScheme = "light" | "dark" | "system"
 
 const STORAGE_KEYS = {
-  THEME_ID: "opencode-theme-id",
-  COLOR_SCHEME: "opencode-color-scheme",
-  THEME_CSS_LIGHT: "opencode-theme-css-light",
-  THEME_CSS_DARK: "opencode-theme-css-dark",
+  THEME_ID: "opensow-theme-id",
+  COLOR_SCHEME: "opensow-color-scheme",
+  THEME_CSS_LIGHT: "opensow-theme-css-light",
+  THEME_CSS_DARK: "opensow-theme-css-dark",
 } as const
 
 const THEME_STYLE_ID = "oc-theme"
