@@ -1,3 +1,15 @@
-<svg width="22" height="26" viewBox="0 0 22 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M4.33203 7.99967V6.33301H10.9987M17.6654 7.99967V6.33301H10.9987M10.9987 6.33301V19.6663M10.9987 19.6663H9.33203M10.9987 19.6663H12.6654" stroke="black" stroke-width="2" stroke-linecap="square"/>
+
+<svg width="800" height="200" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="transparent"/>
+  <text 
+    x="50%" 
+    y="50%" 
+    font-family="Arial, sans-serif" 
+    font-size="100" 
+    font-weight="bold" 
+    fill="#000000" 
+    text-anchor="middle" 
+    dominant-baseline="middle"
+    letter-spacing="2"
+  >opensow</text>
 </svg>
