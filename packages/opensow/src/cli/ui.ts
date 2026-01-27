@@ -4,10 +4,11 @@ import { NamedError } from "@opensow-ai/util/error"
 
 export namespace UI {
   const LOGO = [
-    [`                    `, `             ▄     `],
-    [`█▀▀█ █▀▀█ █▀▀█ █▀▀▄ `, `█▀▀▀ █▀▀█ █▀▀█ █▀▀█`],
-    [`█░░█ █░░█ █▀▀▀ █░░█ `, `█░░░ █░░█ █░░█ █▀▀▀`],
-    [`▀▀▀▀ █▀▀▀ ▀▀▀▀ ▀  ▀ `, `▀▀▀▀ ▀▀▀▀ ▀▀▀▀ ▀▀▀▀`],
+    [`   ___  _ __   ___ _ __  ___  _____      __`],
+    [`  / _ \\| '_ \\ / _ \\ '_ \\/ __|/ _ \\ \\ /\\ / /`],
+    [` | (_) | |_) |  __/ | | \\__ \\ (_) \\ V  V / `],
+    [`  \\___/| .__/ \\___|_| |_|___/\\___/ \\_/\\_/  `],
+    [`       |_|                                 `],
   ]
 
   export const CancelledError = NamedError.create("UICancelledError", z.void())
@@ -53,7 +54,6 @@ export namespace UI {
       result.push(Bun.color("gray", "ansi"))
       result.push(row[0])
       result.push("\x1b[0m")
-      result.push(row[1])
       result.push(EOL)
     }
     return result.join("").trimEnd()
