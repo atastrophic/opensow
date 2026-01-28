@@ -14,7 +14,7 @@ import { useLanguage } from "@/context/language"
 import { DropdownMenu } from "@opensow-ai/ui/dropdown-menu"
 import { Tooltip } from "@opensow-ai/ui/tooltip"
 import { useGlobalSDK } from "@/context/global-sdk"
-import { showToast } from "@opencode-ai/ui/toast"
+import { showToast } from "@opensow-ai/ui/toast"
 
 type ServerStatus = { healthy: boolean; version?: string }
 

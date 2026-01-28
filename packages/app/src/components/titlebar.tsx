@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "@solidjs/router"
 import { IconButton } from "@opensow-ai/ui/icon-button"
 import { Icon } from "@opensow-ai/ui/icon"
 import { Button } from "@opensow-ai/ui/button"
-import { TooltipKeybind } from "@opensow-ai/ui/tooltip"
+import { Tooltip, TooltipKeybind } from "@opensow-ai/ui/tooltip"
 import { useTheme } from "@opensow-ai/ui/theme"
 
 import { useLayout } from "@/context/layout"
@@ -215,9 +215,9 @@ export function Titlebar() {
                 onClick={forward}
                 aria-label={language.t("common.goForward")}
               />
-            </Tooltip >
-          </div >
-        </div >
+            </Tooltip>
+          </div>
+        </div>
         <div id="opensow-titlebar-left" class="flex items-center gap-3 min-w-0 px-2" data-tauri-drag-region />
         <div class="flex-1 h-full" data-tauri-drag-region />
         <div
@@ -229,10 +229,10 @@ export function Titlebar() {
           <div class="w-6 shrink-0" />
           <div data-tauri-decorum-tb class="flex flex-row" />
         </Show>
-      </div >
+      </div>
       <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div id="opensow-titlebar-center" class="pointer-events-auto" />
       </div>
-    </header >
+    </header>
   )
 }

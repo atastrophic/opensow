@@ -15,7 +15,7 @@ import { usePlatform } from "@/context/platform"
 import { useLanguage } from "@/context/language"
 import { createOpencodeClient } from "@opensow-ai/sdk/v2/client"
 import { DialogSelectServer } from "./dialog-select-server"
-import { showToast } from "@opencode-ai/ui/toast"
+import { showToast } from "@opensow-ai/ui/toast"
 
 type ServerStatus = { healthy: boolean; version?: string }
 
