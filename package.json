@@ -73,9 +73,12 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.933.0",
+    "@img/sharp-darwin-arm64": "0.34.5",
     "@opensow-ai/plugin": "workspace:*",
     "@opensow-ai/script": "workspace:*",
     "@opensow-ai/sdk": "workspace:*",
+    "figlet": "1.10.0",
+    "sharp": "0.34.5",
     "typescript": "catalog:"
   },
   "repository": {
