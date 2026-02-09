@@ -1428,16 +1428,38 @@ NOTE: At any point in time through this workflow you should feel free to ask the
     }
     await Session.updatePart(part)
     const shell = Shell.preferred()
+    const command = input.command.trim()
+    if (!command) {
+      const time = part.state.status === "running" ? part.state.time : { start: Date.now() }
+      part.state = {
+        status: "completed",
+        time: {
+          ...time,
+          end: Date.now(),
+        },
+        input: part.state.input,
+        title: "",
+        metadata: {
+          output: "",
+          description: "",
+        },
+        output: "",
+      }
+      await Session.updatePart(part)
+      msg.time.completed = Date.now()
+      await Session.updateMessage(msg)
+      return { info: msg, parts: [part] }
+    }
     const shellName = (
       process.platform === "win32" ? path.win32.basename(shell, ".exe") : path.basename(shell)
     ).toLowerCase()
 
     const invocations: Record<string, { args: string[] }> = {
       nu: {
-        args: ["-c", input.command],
+        args: ["-c", command],
       },
       fish: {
-        args: ["-c", input.command],
+        args: ["-c", command],
       },
       zsh: {
         args: [
@@ -1446,7 +1468,7 @@ NOTE: At any point in time through this workflow you should feel free to ask the
           `
             [[ -f ~/.zshenv ]] && source ~/.zshenv >/dev/null 2>&1 || true
             [[ -f "\${ZDOTDIR:-$HOME}/.zshrc" ]] && source "\${ZDOTDIR:-$HOME}/.zshrc" >/dev/null 2>&1 || true
-            eval ${JSON.stringify(input.command)}
+            eval ${JSON.stringify(command)}
           `,
         ],
       },
@@ -1457,25 +1479,25 @@ NOTE: At any point in time through this workflow you should feel free to ask the
           `
             shopt -s expand_aliases
             [[ -f ~/.bashrc ]] && source ~/.bashrc >/dev/null 2>&1 || true
-            eval ${JSON.stringify(input.command)}
+            eval ${JSON.stringify(command)}
           `,
         ],
       },
       // Windows cmd
       cmd: {
-        args: ["/c", input.command],
+        args: ["/c", command],
       },
       // Windows PowerShell
       powershell: {
-        args: ["-NoProfile", "-Command", input.command],
+        args: ["-NoProfile", "-Command", command],
       },
       pwsh: {
-        args: ["-NoProfile", "-Command", input.command],
+        args: ["-NoProfile", "-Command", command],
       },
       // Fallback: any shell that doesn't match those above
       //  - No -l, for max compatibility
       "": {
-        args: ["-c", `${input.command}`],
+        args: ["-c", `${command}`],
       },
     }
 

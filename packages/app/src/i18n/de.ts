@@ -78,6 +78,8 @@ export const dict = {
   "command.session.redo.description": "Letzte rückgängig gemachte Nachricht wiederherstellen",
   "command.session.compact": "Sitzung komprimieren",
   "command.session.compact.description": "Sitzung zusammenfassen, um die Kontextgröße zu reduzieren",
+  "command.session.shell": "Shell-Befehl ausführen",
+  "command.session.shell.description": "Einen Shell-Befehl ausführen",
   "command.session.fork": "Von Nachricht abzweigen",
   "command.session.fork.description": "Neue Sitzung aus einer früheren Nachricht erstellen",
   "command.session.share": "Sitzung teilen",

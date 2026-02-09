@@ -823,7 +823,7 @@ export default function Page() {
         const sessionID = params.id
         if (!sessionID) return
         if (status()?.type !== "idle") {
-          await sdk.client.session.abort({ sessionID }).catch(() => { })
+          await sdk.client.session.abort({ sessionID }).catch(() => {})
         }
         const revert = info()?.revert?.messageID
         // Find the last user message that's not already reverted
@@ -896,6 +896,18 @@ export default function Page() {
       },
     },
     {
+      id: "session.shell",
+      title: language.t("command.session.shell"),
+      description: language.t("command.session.shell.description"),
+      category: language.t("command.category.session"),
+      slash: "shell",
+      disabled: !params.id,
+      onSelect: () => {
+        const text = "/shell "
+        prompt.set([{ type: "text", content: text, start: 0, end: text.length }], text.length)
+      },
+    },
+    {
       id: "session.fork",
       title: language.t("command.session.fork"),
       description: language.t("command.session.fork.description"),
@@ -906,69 +918,69 @@ export default function Page() {
     },
     ...(sync.data.config.share !== "disabled"
       ? [
-        {
-          id: "session.share",
-          title: language.t("command.session.share"),
-          description: language.t("command.session.share.description"),
-          category: language.t("command.category.session"),
-          slash: "share",
-          disabled: !params.id || !!info()?.share?.url,
-          onSelect: async () => {
-            if (!params.id) return
-            await sdk.client.session
-              .share({ sessionID: params.id })
-              .then((res) => {
-                navigator.clipboard.writeText(res.data!.share!.url).catch(() =>
+          {
+            id: "session.share",
+            title: language.t("command.session.share"),
+            description: language.t("command.session.share.description"),
+            category: language.t("command.category.session"),
+            slash: "share",
+            disabled: !params.id || !!info()?.share?.url,
+            onSelect: async () => {
+              if (!params.id) return
+              await sdk.client.session
+                .share({ sessionID: params.id })
+                .then((res) => {
+                  navigator.clipboard.writeText(res.data!.share!.url).catch(() =>
+                    showToast({
+                      title: language.t("toast.session.share.copyFailed.title"),
+                      variant: "error",
+                    }),
+                  )
+                })
+                .then(() =>
                   showToast({
-                    title: language.t("toast.session.share.copyFailed.title"),
+                    title: language.t("toast.session.share.success.title"),
+                    description: language.t("toast.session.share.success.description"),
+                    variant: "success",
+                  }),
+                )
+                .catch(() =>
+                  showToast({
+                    title: language.t("toast.session.share.failed.title"),
+                    description: language.t("toast.session.share.failed.description"),
                     variant: "error",
                   }),
                 )
-              })
-              .then(() =>
-                showToast({
-                  title: language.t("toast.session.share.success.title"),
-                  description: language.t("toast.session.share.success.description"),
-                  variant: "success",
-                }),
-              )
-              .catch(() =>
-                showToast({
-                  title: language.t("toast.session.share.failed.title"),
-                  description: language.t("toast.session.share.failed.description"),
-                  variant: "error",
-                }),
-              )
+            },
           },
-        },
-        {
-          id: "session.unshare",
-          title: language.t("command.session.unshare"),
-          description: language.t("command.session.unshare.description"),
-          category: language.t("command.category.session"),
-          slash: "unshare",
-          disabled: !params.id || !info()?.share?.url,
-          onSelect: async () => {
-            if (!params.id) return
-            await sdk.client.session
-              .unshare({ sessionID: params.id })
-              .then(() =>
-                showToast({
-                  title: language.t("toast.session.unshare.success.title"),
-                  description: language.t("toast.session.unshare.success.description"),
-                  variant: "success",
-                }),
-              )
-              .catch(() =>
-                showToast({
-                  title: language.t("toast.session.unshare.failed.title"),
-                  description: language.t("toast.session.unshare.failed.description"),
-                  variant: "error",
-                }),
-              )
+          {
+            id: "session.unshare",
+            title: language.t("command.session.unshare"),
+            description: language.t("command.session.unshare.description"),
+            category: language.t("command.category.session"),
+            slash: "unshare",
+            disabled: !params.id || !info()?.share?.url,
+            onSelect: async () => {
+              if (!params.id) return
+              await sdk.client.session
+                .unshare({ sessionID: params.id })
+                .then(() =>
+                  showToast({
+                    title: language.t("toast.session.unshare.success.title"),
+                    description: language.t("toast.session.unshare.success.description"),
+                    variant: "success",
+                  }),
+                )
+                .catch(() =>
+                  showToast({
+                    title: language.t("toast.session.unshare.failed.title"),
+                    description: language.t("toast.session.unshare.failed.description"),
+                    variant: "error",
+                  }),
+                )
+            },
           },
-        },
-      ]
+        ]
       : []),
   ])
 
@@ -1240,7 +1252,7 @@ export default function Page() {
 
     const wants = isDesktop()
       ? view().reviewPanel.opened() &&
-      (layout.fileTree.opened() ? fileTreeTab() === "changes" : activeTab() === "review")
+        (layout.fileTree.opened() ? fileTreeTab() === "changes" : activeTab() === "review")
       : store.mobileTab === "review"
     if (!wants) return
     if (diffsReady()) return

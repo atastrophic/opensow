@@ -1005,6 +1005,11 @@ export namespace ACP {
           name: "compact",
           description: "compact the session",
         })
+      if (!names.has("shell"))
+        availableCommands.push({
+          name: "shell",
+          description: "run a shell command",
+        })
 
       const availableModes = agents
         .filter((agent) => agent.mode !== "subagent" && !agent.hidden)
@@ -1257,6 +1262,18 @@ export namespace ACP {
             { throwOnError: true },
           )
           break
+        case "shell":
+          await this.config.sdk.session.shell(
+            {
+              sessionID,
+              directory,
+              agent,
+              model,
+              command: cmd.args ?? "",
+            },
+            { throwOnError: true },
+          )
+          return done
       }
 
       return done
