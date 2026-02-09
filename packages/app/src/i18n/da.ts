@@ -74,6 +74,8 @@ export const dict = {
   "command.session.redo.description": "Omgør den sidste fortrudte besked",
   "command.session.compact": "Komprimér session",
   "command.session.compact.description": "Opsummer sessionen for at reducere kontekststørrelsen",
+  "command.session.shell": "Kør shell-kommando",
+  "command.session.shell.description": "Kør en shell-kommando",
   "command.session.fork": "Forgren fra besked",
   "command.session.fork.description": "Opret en ny session fra en tidligere besked",
   "command.session.share": "Del session",

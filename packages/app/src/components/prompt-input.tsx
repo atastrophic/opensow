@@ -1239,6 +1239,12 @@ export const PromptInput: Component<PromptInputProps> = (props) => {
       setStore("popover", null)
     }
 
+    const setShellInput = () => {
+      prompt.reset()
+      setStore("mode", "shell")
+      setStore("popover", null)
+    }
+
     const restoreInput = () => {
       prompt.set(currentPrompt, promptLength(currentPrompt))
       setStore("mode", mode)
@@ -1272,6 +1278,29 @@ export const PromptInput: Component<PromptInputProps> = (props) => {
     if (text.startsWith("/")) {
       const [cmdName, ...args] = text.split(" ")
       const commandName = cmdName.slice(1)
+      const commandArgs = args.join(" ").trim()
+      if (commandName === "shell") {
+        if (!commandArgs) {
+          setShellInput()
+          return
+        }
+        clearInput()
+        client.session
+          .shell({
+            sessionID: session.id,
+            agent,
+            model,
+            command: commandArgs,
+          })
+          .catch((err) => {
+            showToast({
+              title: language.t("prompt.toast.shellSendFailed.title"),
+              description: errorMessage(err),
+            })
+            restoreInput()
+          })
+        return
+      }
       const customCommand = sync.data.command.find((c) => c.name === commandName)
       if (customCommand) {
         clearInput()

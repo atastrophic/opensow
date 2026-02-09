@@ -74,6 +74,8 @@ export const dict = {
   "command.session.redo.description": "Rehacer el último mensaje deshecho",
   "command.session.compact": "Compactar sesión",
   "command.session.compact.description": "Resumir la sesión para reducir el tamaño del contexto",
+  "command.session.shell": "Ejecutar comando de shell",
+  "command.session.shell.description": "Ejecutar un comando de shell",
   "command.session.fork": "Bifurcar desde mensaje",
   "command.session.fork.description": "Crear una nueva sesión desde un mensaje anterior",
   "command.session.share": "Compartir sesión",
