@@ -1,13 +1,13 @@
-Use this tool to suggest switching to plan agent when the user's request would benefit from planning before implementation.
+Use this tool to suggest switching to the research agent when the user's request would benefit from deep research before implementation.
 
-If they explicitly mention wanting to create a plan ALWAYS call this tool first.
+If they explicitly mention wanting to research a topic ALWAYS call this tool first.
 
-This tool will ask the user if they want to switch to plan agent.
+This tool will ask the user if they want to switch to the research agent.
 
 Call this tool when:
-- The user's request is complex and would benefit from planning first
-- You want to research and design before making changes
-- The task involves multiple files or significant architectural decisions
+- The user's request is complex and would benefit from research first
+- You want to investigate and gather information before making changes
+- The task involves exploring multiple sources or understanding a topic in depth
 
 Do NOT call this tool:
 - For simple, straightforward tasks

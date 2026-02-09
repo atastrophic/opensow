@@ -17,7 +17,7 @@ import { ProviderTransform } from "../provider/transform"
 import { SystemPrompt } from "./system"
 import { InstructionPrompt } from "./instruction"
 import { Plugin } from "../plugin"
-import PROMPT_PLAN from "../session/prompt/plan.txt"
+import PROMPT_RESEARCH from "../session/prompt/plan.txt"
 import BUILD_SWITCH from "../session/prompt/build-switch.txt"
 import MAX_STEPS from "../session/prompt/max-steps.txt"
 import { defer } from "../util/defer"
@@ -1201,18 +1201,18 @@ export namespace SessionPrompt {
 
     // Original logic when experimental plan mode is disabled
     if (!Flag.OPENCODE_EXPERIMENTAL_PLAN_MODE) {
-      if (input.agent.name === "plan") {
+      if (input.agent.name === "research") {
         userMessage.parts.push({
           id: Identifier.ascending("part"),
           messageID: userMessage.info.id,
           sessionID: userMessage.info.sessionID,
           type: "text",
-          text: PROMPT_PLAN,
+          text: PROMPT_RESEARCH,
           synthetic: true,
         })
       }
-      const wasPlan = input.messages.some((msg) => msg.info.role === "assistant" && msg.info.agent === "plan")
-      if (wasPlan && input.agent.name === "build") {
+      const wasResearch = input.messages.some((msg) => msg.info.role === "assistant" && msg.info.agent === "research")
+      if (wasResearch && input.agent.name === "build") {
         userMessage.parts.push({
           id: Identifier.ascending("part"),
           messageID: userMessage.info.id,
@@ -1228,10 +1228,10 @@ export namespace SessionPrompt {
     // New plan mode logic when flag is enabled
     const assistantMessage = input.messages.findLast((msg) => msg.info.role === "assistant")
 
-    // Switching from plan mode to build mode
-    if (input.agent.name !== "plan" && assistantMessage?.info.agent === "plan") {
-      const plan = Session.plan(input.session)
-      const exists = await Bun.file(plan).exists()
+    // Switching from research mode to build mode
+    if (input.agent.name !== "research" && assistantMessage?.info.agent === "research") {
+      const researchFile = Session.research(input.session)
+      const exists = await Bun.file(researchFile).exists()
       if (exists) {
         const part = await Session.updatePart({
           id: Identifier.ascending("part"),
@@ -1239,7 +1239,7 @@ export namespace SessionPrompt {
           sessionID: userMessage.info.sessionID,
           type: "text",
           text:
-            BUILD_SWITCH + "\n\n" + `A plan file exists at ${plan}. You should execute on the plan defined within it`,
+            BUILD_SWITCH + "\n\n" + `A research file exists at ${researchFile}. You can reference the research findings within it`,
           synthetic: true,
         })
         userMessage.parts.push(part)
@@ -1247,85 +1247,74 @@ export namespace SessionPrompt {
       return input.messages
     }
 
-    // Entering plan mode
-    if (input.agent.name === "plan" && assistantMessage?.info.agent !== "plan") {
-      const plan = Session.plan(input.session)
-      const exists = await Bun.file(plan).exists()
-      if (!exists) await fs.mkdir(path.dirname(plan), { recursive: true })
+    // Entering research mode
+    if (input.agent.name === "research" && assistantMessage?.info.agent !== "research") {
+      const researchFile = Session.research(input.session)
+      const exists = await Bun.file(researchFile).exists()
+      if (!exists) await fs.mkdir(path.dirname(researchFile), { recursive: true })
       const part = await Session.updatePart({
         id: Identifier.ascending("part"),
         messageID: userMessage.info.id,
         sessionID: userMessage.info.sessionID,
         type: "text",
         text: `<system-reminder>
-Plan mode is active. The user indicated that they do not want you to execute yet -- you MUST NOT make any edits (with the exception of the plan file mentioned below), run any non-readonly tools (including changing configs or making commits), or otherwise make any changes to the system. This supersedes any other instructions you have received.
+Research mode is active. The user wants you to research and gather information -- you MUST NOT make any edits to existing files, run any non-readonly tools (except creating markdown files to save research), or otherwise make destructive changes to the system. This supersedes any other instructions you have received.
 
-## Plan File Info:
-${exists ? `A plan file already exists at ${plan}. You can read it and make incremental edits using the edit tool.` : `No plan file exists yet. You should create your plan at ${plan} using the write tool.`}
-You should build your plan incrementally by writing to or editing this file. NOTE that this is the only file you are allowed to edit - other than this you are only allowed to take READ-ONLY actions.
+## Research File Info:
+${exists ? `A research file already exists at ${researchFile}. You can read it and make incremental edits using the edit tool.` : `No research file exists yet. You should create your research notes at ${researchFile} using the write tool.`}
+You should build your research incrementally by writing to or editing this file. You may also create additional markdown (.md) files to organize your findings. NOTE that markdown files are the only files you are allowed to create or edit - other than this you are only allowed to take READ-ONLY actions.
 
-## Plan Workflow
+## Research Workflow
 
 ### Phase 1: Initial Understanding
-Goal: Gain a comprehensive understanding of the user's request by reading through code and asking them questions. Critical: In this phase you should only use the explore subagent type.
+Goal: Gain a comprehensive understanding of the user's research request by exploring available resources and asking them questions. Critical: In this phase you should only use the explore subagent type.
 
-1. Focus on understanding the user's request and the code associated with their request
+1. Focus on understanding the user's request and the information they need
 
-2. **Launch up to 3 explore agents IN PARALLEL** (single message, multiple tool calls) to efficiently explore the codebase.
-   - Use 1 agent when the task is isolated to known files, the user provided specific file paths, or you're making a small targeted change.
-   - Use multiple agents when: the scope is uncertain, multiple areas of the codebase are involved, or you need to understand existing patterns before planning.
+2. **Launch up to 3 explore agents IN PARALLEL** (single message, multiple tool calls) to efficiently gather information.
+   - Use 1 agent when the topic is narrow or the user provided specific sources/paths.
+   - Use multiple agents when: the scope is broad, multiple sources need to be checked, or you need to cross-reference information.
    - Quality over quantity - 3 agents maximum, but you should try to use the minimum number of agents necessary (usually just 1)
-   - If using multiple agents: Provide each agent with a specific search focus or area to explore. Example: One agent searches for existing implementations, another explores related components, a third investigates testing patterns
+   - If using multiple agents: Provide each agent with a specific research focus or area to explore. Example: One agent searches web resources, another explores local files, a third investigates related topics
 
-3. After exploring the code, use the question tool to clarify ambiguities in the user request up front.
+3. After initial exploration, use the question tool to clarify ambiguities in the user's research request.
 
-### Phase 2: Design
-Goal: Design an implementation approach.
+### Phase 2: Deep Research
+Goal: Conduct thorough research using all available tools.
 
-Launch general agent(s) to design the implementation based on the user's intent and your exploration results from Phase 1.
+Launch general agent(s) to conduct deeper research based on the user's intent and your exploration results from Phase 1.
 
 You can launch up to 1 agent(s) in parallel.
 
 **Guidelines:**
-- **Default**: Launch at least 1 Plan agent for most tasks - it helps validate your understanding and consider alternatives
-- **Skip agents**: Only for truly trivial tasks (typo fixes, single-line changes, simple renames)
-
-Examples of when to use multiple agents:
-- The task touches multiple parts of the codebase
-- It's a large refactor or architectural change
-- There are many edge cases to consider
-- You'd benefit from exploring different approaches
-
-Example perspectives by task type:
-- New feature: simplicity vs performance vs maintainability
-- Bug fix: root cause vs workaround vs prevention
-- Refactoring: minimal change vs clean architecture
+- **Default**: Launch at least 1 research agent for most topics - it helps gather comprehensive information
+- **Skip agents**: Only for very narrow, well-defined lookups
 
 In the agent prompt:
-- Provide comprehensive background context from Phase 1 exploration including filenames and code path traces
-- Describe requirements and constraints
-- Request a detailed implementation plan
+- Provide comprehensive background context from Phase 1 exploration
+- Describe what information to look for and what sources to check
+- Request organized research findings
 
 ### Phase 3: Review
-Goal: Review the plan(s) from Phase 2 and ensure alignment with the user's intentions.
-1. Read the critical files identified by agents to deepen your understanding
-2. Ensure that the plans align with the user's original request
+Goal: Review the research findings and ensure they address the user's questions.
+1. Read any key sources identified by agents to verify accuracy
+2. Ensure that the findings align with the user's original research request
 3. Use question tool to clarify any remaining questions with the user
 
-### Phase 4: Final Plan
-Goal: Write your final plan to the plan file (the only file you can edit).
-- Include only your recommended approach, not all alternatives
-- Ensure that the plan file is concise enough to scan quickly, but detailed enough to execute effectively
-- Include the paths of critical files to be modified
-- Include a verification section describing how to test the changes end-to-end (run the code, use MCP tools, run tests)
+### Phase 4: Save Findings
+Goal: Write your research findings to the research file (and any additional markdown files as needed).
+- Include only verified, relevant findings
+- Organize the research clearly with sections and references
+- Include sources and links where applicable
+- Note any areas that need further investigation
 
-### Phase 5: Call plan_exit tool
-At the very end of your turn, once you have asked the user questions and are happy with your final plan file - you should always call plan_exit to indicate to the user that you are done planning.
-This is critical - your turn should only end with either asking the user a question or calling plan_exit. Do not stop unless it's for these 2 reasons.
+### Phase 5: Call research_exit tool
+At the very end of your turn, once you have asked the user questions and are happy with your research findings - you should always call research_exit to indicate to the user that you are done researching.
+This is critical - your turn should only end with either asking the user a question or calling research_exit. Do not stop unless it's for these 2 reasons.
 
-**Important:** Use question tool to clarify requirements/approach, use plan_exit to request plan approval. Do NOT use question tool to ask "Is this plan okay?" - that's what plan_exit does.
+**Important:** Use question tool to clarify research direction, use research_exit to signal research completion. Do NOT use question tool to ask "Is this research okay?" - that's what research_exit does.
 
-NOTE: At any point in time through this workflow you should feel free to ask the user questions or clarifications. Don't make large assumptions about user intent. The goal is to present a well researched plan to the user, and tie any loose ends before implementation begins.
+NOTE: At any point in time through this workflow you should feel free to ask the user questions or clarifications. Don't make large assumptions about user intent. The goal is to present well-researched findings to the user.
 </system-reminder>`,
         synthetic: true,
       })

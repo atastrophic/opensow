@@ -58,8 +58,8 @@ export namespace Agent {
         [Truncate.GLOB]: "allow",
       },
       question: "deny",
-      plan_enter: "deny",
-      plan_exit: "deny",
+      research_enter: "deny",
+      research_exit: "deny",
       // mirrors github.com/github/gitignore Node.gitignore pattern for .env files
       read: {
         "*": "allow",
@@ -79,29 +79,32 @@ export namespace Agent {
           defaults,
           PermissionNext.fromConfig({
             question: "allow",
-            plan_enter: "allow",
+            research_enter: "allow",
           }),
           user,
         ),
         mode: "primary",
         native: true,
       },
-      plan: {
-        name: "plan",
-        description: "Plan mode. Disallows all edit tools.",
+      research: {
+        name: "research",
+        description: "Research mode. Allows read-only exploration and saving research findings to markdown files.",
         options: {},
         permission: PermissionNext.merge(
           defaults,
           PermissionNext.fromConfig({
             question: "allow",
-            plan_exit: "allow",
+            research_exit: "allow",
             external_directory: {
-              [path.join(Global.Path.data, "plans", "*")]: "allow",
+              [path.join(Global.Path.data, "research", "*")]: "allow",
             },
             edit: {
               "*": "deny",
-              [path.join(".opensow", "plans", "*.md")]: "allow",
-              [path.relative(Instance.worktree, path.join(Global.Path.data, path.join("plans", "*.md")))]: "allow",
+              [path.join(".opensow", "research", "*.md")]: "allow",
+              [path.relative(Instance.worktree, path.join(Global.Path.data, path.join("research", "*.md")))]: "allow",
+            },
+            write: {
+              "*.md": "allow",
             },
           }),
           user,

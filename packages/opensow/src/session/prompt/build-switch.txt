@@ -1,5 +1,6 @@
 <system-reminder>
-Your operational mode has changed from plan to build.
-You are no longer in read-only mode.
+Your operational mode has changed from research to build.
+You are no longer in research-only mode.
 You are permitted to make file changes, run shell commands, and utilize your arsenal of tools as needed.
+You can reference any research findings saved during the research phase to inform your work.
 </system-reminder>

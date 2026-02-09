@@ -17,22 +17,22 @@ async function getLastModel(sessionID: string) {
   return Provider.defaultModel()
 }
 
-export const PlanExitTool = Tool.define("plan_exit", {
+export const PlanExitTool = Tool.define("research_exit", {
   description: EXIT_DESCRIPTION,
   parameters: z.object({}),
   async execute(_params, ctx) {
     const session = await Session.get(ctx.sessionID)
-    const plan = path.relative(Instance.worktree, Session.plan(session))
+    const researchFile = path.relative(Instance.worktree, Session.research(session))
     const answers = await Question.ask({
       sessionID: ctx.sessionID,
       questions: [
         {
-          question: `Plan at ${plan} is complete. Would you like to switch to the build agent and start implementing?`,
+          question: `Research at ${researchFile} is complete. Would you like to switch to the build agent and start implementing?`,
           header: "Build Agent",
           custom: false,
           options: [
-            { label: "Yes", description: "Switch to build agent and start implementing the plan" },
-            { label: "No", description: "Stay with plan agent to continue refining the plan" },
+            { label: "Yes", description: "Switch to build agent and start implementing based on research" },
+            { label: "No", description: "Stay with research agent to continue researching" },
           ],
         },
       ],
@@ -60,7 +60,7 @@ export const PlanExitTool = Tool.define("plan_exit", {
       messageID: userMsg.id,
       sessionID: ctx.sessionID,
       type: "text",
-      text: `The plan at ${plan} has been approved, you can now edit files. Execute the plan`,
+      text: `The research at ${researchFile} has been completed, you can now edit files. Use the research findings to proceed`,
       synthetic: true,
     } satisfies MessageV2.TextPart)
 
@@ -72,22 +72,22 @@ export const PlanExitTool = Tool.define("plan_exit", {
   },
 })
 
-export const PlanEnterTool = Tool.define("plan_enter", {
+export const PlanEnterTool = Tool.define("research_enter", {
   description: ENTER_DESCRIPTION,
   parameters: z.object({}),
   async execute(_params, ctx) {
     const session = await Session.get(ctx.sessionID)
-    const plan = path.relative(Instance.worktree, Session.plan(session))
+    const researchFile = path.relative(Instance.worktree, Session.research(session))
 
     const answers = await Question.ask({
       sessionID: ctx.sessionID,
       questions: [
         {
-          question: `Would you like to switch to the plan agent and create a plan saved to ${plan}?`,
-          header: "Plan Mode",
+          question: `Would you like to switch to the research agent and save findings to ${researchFile}?`,
+          header: "Research Mode",
           custom: false,
           options: [
-            { label: "Yes", description: "Switch to plan agent for research and planning" },
+            { label: "Yes", description: "Switch to research agent for deep research and exploration" },
             { label: "No", description: "Stay with build agent to continue making changes" },
           ],
         },
@@ -108,7 +108,7 @@ export const PlanEnterTool = Tool.define("plan_enter", {
       time: {
         created: Date.now(),
       },
-      agent: "plan",
+      agent: "research",
       model,
     }
     await Session.updateMessage(userMsg)
@@ -117,13 +117,13 @@ export const PlanEnterTool = Tool.define("plan_enter", {
       messageID: userMsg.id,
       sessionID: ctx.sessionID,
       type: "text",
-      text: "User has requested to enter plan mode. Switch to plan mode and begin planning.",
+      text: "User has requested to enter research mode. Switch to research mode and begin investigating.",
       synthetic: true,
     } satisfies MessageV2.TextPart)
 
     return {
-      title: "Switching to plan agent",
-      output: `User confirmed to switch to plan mode. A new message has been created to switch you to plan mode. The plan file will be at ${plan}. Begin planning.`,
+      title: "Switching to research agent",
+      output: `User confirmed to switch to research mode. A new message has been created to switch you to research mode. The research file will be at ${researchFile}. Begin researching.`,
       metadata: {},
     }
   },

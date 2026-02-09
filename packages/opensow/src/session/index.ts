@@ -232,10 +232,10 @@ export namespace Session {
     return result
   }
 
-  export function plan(input: { slug: string; time: { created: number } }) {
+  export function research(input: { slug: string; time: { created: number } }) {
     const base = Instance.project.vcs
-      ? path.join(Instance.worktree, ".opensow", "plans")
-      : path.join(Global.Path.data, "plans")
+      ? path.join(Instance.worktree, ".opensow", "research")
+      : path.join(Global.Path.data, "research")
     return path.join(base, [input.time.created, input.slug].join("-") + ".md")
   }
 
