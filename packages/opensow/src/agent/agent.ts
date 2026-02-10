@@ -13,6 +13,7 @@ import PROMPT_COMPACTION from "./prompt/compaction.txt"
 import PROMPT_EXPLORE from "./prompt/explore.txt"
 import PROMPT_SUMMARY from "./prompt/summary.txt"
 import PROMPT_TITLE from "./prompt/title.txt"
+import PROMPT_GARTENMEISTER from "./prompt/gartenmeister.txt"
 import { PermissionNext } from "@/permission/next"
 import { mergeDeep, pipe, sortBy, values } from "remeda"
 import { Global } from "@/global"
@@ -71,10 +72,11 @@ export namespace Agent {
     const user = PermissionNext.fromConfig(cfg.permission ?? {})
 
     const result: Record<string, Info> = {
-      build: {
-        name: "build",
-        description: "The default agent. Executes tools based on configured permissions.",
+      gartenmeister: {
+        name: "gartenmeister",
+        description: "The Gartenmeister — master gardener and default agent. Full tool access for executing plans, making changes, and running commands.",
         options: {},
+        prompt: PROMPT_GARTENMEISTER,
         permission: PermissionNext.merge(
           defaults,
           PermissionNext.fromConfig({
@@ -258,7 +260,7 @@ export namespace Agent {
     return pipe(
       await state(),
       values(),
-      sortBy([(x) => (cfg.default_agent ? x.name === cfg.default_agent : x.name === "build"), "desc"]),
+      sortBy([(x) => (cfg.default_agent ? x.name === cfg.default_agent : x.name === "gartenmeister"), "desc"]),
     )
   }
 

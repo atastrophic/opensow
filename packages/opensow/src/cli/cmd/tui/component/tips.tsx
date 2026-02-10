@@ -51,7 +51,7 @@ export function Tips() {
 const TIPS = [
   "Type {highlight}@{/highlight} followed by a filename to fuzzy search and attach files",
   "Start a message with {highlight}!{/highlight} to run shell commands directly (e.g., {highlight}!ls -la{/highlight})",
-  "Press {highlight}Tab{/highlight} to cycle between Build and Plan agents",
+  "Press {highlight}Tab{/highlight} to cycle between Gartenmeister and Plan agents",
   "Use {highlight}/undo{/highlight} to revert the last message and file changes",
   "Use {highlight}/redo{/highlight} to restore previously undone messages and file changes",
   "Run {highlight}/share{/highlight} to create a public link to your conversation at opensow.ai",
@@ -142,7 +142,7 @@ const TIPS = [
   "Press {highlight}Ctrl+X S{/highlight} or {highlight}/status{/highlight} to see system status info",
   "Enable {highlight}tui.scroll_acceleration{/highlight} for smooth macOS-style scrolling",
   "Toggle username display in chat via command palette ({highlight}Ctrl+P{/highlight})",
-  "Run {highlight}docker run -it --rm ghcr.io/anomalyco/opensow{/highlight} for containerized use",
+  "Run {highlight}docker run -it --rm ghcr.io/atasrophic/opensow{/highlight} for containerized use",
   "Use {highlight}/connect{/highlight} with OpenSow Zen for curated, tested models",
   "Commit your project's {highlight}AGENTS.md{/highlight} file to Git for team sharing",
   "Use {highlight}/review{/highlight} to review uncommitted changes, branches, or PRs",

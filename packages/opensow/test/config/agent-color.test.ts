@@ -14,7 +14,7 @@ test("agent color parsed from project config", async () => {
         JSON.stringify({
           $schema: "https://opensow.ai/config.json",
           agent: {
-            build: { color: "#FFA500" },
+            gartenmeister: { color: "#FFA500" },
           },
         }),
       )
@@ -24,7 +24,7 @@ test("agent color parsed from project config", async () => {
     directory: tmp.path,
     fn: async () => {
       const cfg = await Config.get()
-      expect(cfg.agent?.["build"]?.color).toBe("#FFA500")
+      expect(cfg.agent?.["gartenmeister"]?.color).toBe("#FFA500")
     },
   })
 })

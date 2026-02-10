@@ -27,11 +27,11 @@ export const PlanExitTool = Tool.define("research_exit", {
       sessionID: ctx.sessionID,
       questions: [
         {
-          question: `Research at ${researchFile} is complete. Would you like to switch to the build agent and start implementing?`,
-          header: "Build Agent",
+          question: `Research at ${researchFile} is complete. Would you like to switch to gartenmeister and start implementing?`,
+          header: "Gartenmeister",
           custom: false,
           options: [
-            { label: "Yes", description: "Switch to build agent and start implementing based on research" },
+            { label: "Yes", description: "Switch to gartenmeister and start implementing based on research" },
             { label: "No", description: "Stay with research agent to continue researching" },
           ],
         },
@@ -51,7 +51,7 @@ export const PlanExitTool = Tool.define("research_exit", {
       time: {
         created: Date.now(),
       },
-      agent: "build",
+      agent: "gartenmeister",
       model,
     }
     await Session.updateMessage(userMsg)
@@ -65,8 +65,8 @@ export const PlanExitTool = Tool.define("research_exit", {
     } satisfies MessageV2.TextPart)
 
     return {
-      title: "Switching to build agent",
-      output: "User approved switching to build agent. Wait for further instructions.",
+      title: "Switching to gartenmeister",
+      output: "User approved switching to gartenmeister. Wait for further instructions.",
       metadata: {},
     }
   },
@@ -88,7 +88,7 @@ export const PlanEnterTool = Tool.define("research_enter", {
           custom: false,
           options: [
             { label: "Yes", description: "Switch to research agent for deep research and exploration" },
-            { label: "No", description: "Stay with build agent to continue making changes" },
+            { label: "No", description: "Stay with gartenmeister to continue making changes" },
           ],
         },
       ],

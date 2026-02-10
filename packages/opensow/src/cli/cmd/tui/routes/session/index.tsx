@@ -205,7 +205,7 @@ export function Session() {
     if (part.id === lastSwitch) return
 
     if (part.tool === "research_exit") {
-      local.agent.set("build")
+      local.agent.set("gartenmeister")
       lastSwitch = part.id
     } else if (part.tool === "research_enter") {
       local.agent.set("research")

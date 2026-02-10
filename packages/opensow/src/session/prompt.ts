@@ -1212,7 +1212,7 @@ export namespace SessionPrompt {
         })
       }
       const wasResearch = input.messages.some((msg) => msg.info.role === "assistant" && msg.info.agent === "research")
-      if (wasResearch && input.agent.name === "build") {
+      if (wasResearch && input.agent.name === "gartenmeister") {
         userMessage.parts.push({
           id: Identifier.ascending("part"),
           messageID: userMessage.info.id,
@@ -1228,7 +1228,7 @@ export namespace SessionPrompt {
     // New plan mode logic when flag is enabled
     const assistantMessage = input.messages.findLast((msg) => msg.info.role === "assistant")
 
-    // Switching from research mode to build mode
+    // Switching from research mode to gartenmeister mode
     if (input.agent.name !== "research" && assistantMessage?.info.agent === "research") {
       const researchFile = Session.research(input.session)
       const exists = await Bun.file(researchFile).exists()

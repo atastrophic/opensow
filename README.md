@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://opensow.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
   <a href="https://www.npmjs.com/package/opensow-ai"><img alt="npm" src="https://img.shields.io/npm/v/opensow-ai?style=flat-square" /></a>
-  <a href="https://github.com/anomalyco/opensow/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/anomalyco/opensow/publish.yml?style=flat-square&branch=dev" /></a>
+  <a href="https://github.com/atasrophic/opensow/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/atasrophic/opensow/publish.yml?style=flat-square&branch=dev" /></a>
 </p>
 
 <p align="center">
@@ -46,11 +46,11 @@ curl -fsSL https://opensow.ai/install | bash
 npm i -g opensow-ai@latest        # or bun/pnpm/yarn
 scoop install opensow             # Windows
 choco install opensow             # Windows
-brew install anomalyco/tap/opensow # macOS and Linux (recommended, always up to date)
+brew install atasrophic/tap/opensow # macOS and Linux (recommended, always up to date)
 brew install opensow              # macOS and Linux (official brew formula, updated less)
 paru -S opensow-bin               # Arch Linux
 mise use -g opensow               # Any OS
-nix run nixpkgs#opensow           # or github:anomalyco/opensow for latest dev branch
+nix run nixpkgs#opensow           # or github:atasrophic/opensow for latest dev branch
 ```
 
 > [!TIP]
@@ -58,7 +58,7 @@ nix run nixpkgs#opensow           # or github:anomalyco/opensow for latest dev b
 
 ### Desktop App (BETA)
 
-OpenSow is also available as a desktop application. Download directly from the [releases page](https://github.com/anomalyco/opensow/releases) or [opensow.ai/download](https://opensow.ai/download).
+OpenSow is also available as a desktop application. Download directly from the [releases page](https://github.com/atasrophic/opensow/releases) or [opensow.ai/download](https://opensow.ai/download).
 
 | Platform              | Download                              |
 | --------------------- | ------------------------------------- |
@@ -93,7 +93,7 @@ XDG_BIN_DIR=$HOME/.local/bin curl -fsSL https://opensow.ai/install | bash
 
 OpenSow includes two built-in agents you can switch between with the `Tab` key.
 
-- **build** - Default, full access agent for development work
+- **gartenmeister** - Default, full access agent for development work
 - **plan** - Read-only agent for analysis and code exploration
   - Denies file edits by default
   - Asks permission before running bash commands

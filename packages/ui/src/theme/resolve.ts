@@ -220,7 +220,7 @@ export function resolveThemeVariant(variant: ThemeVariant, isDark: boolean): Res
   tokens["icon-agent-plan-base"] = info[8]
   tokens["icon-agent-docs-base"] = warning[8]
   tokens["icon-agent-ask-base"] = interactive[8]
-  tokens["icon-agent-build-base"] = interactive[isDark ? 10 : 8]
+  tokens["icon-agent-gartenmeister-base"] = interactive[isDark ? 10 : 8]
 
   tokens["icon-on-success-base"] = withAlpha(success[8], 0.9) as ColorValue
   tokens["icon-on-success-hover"] = withAlpha(success[9], 0.9) as ColorValue

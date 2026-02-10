@@ -398,7 +398,7 @@ jobs:
           persist-credentials: false
 
       - name: Run opensow
-        uses: anomalyco/opensow/github@latest${envStr}
+        uses: atasrophic/opensow/github@latest${envStr}
         with:
           model: ${provider}/${model}`,
             )
@@ -887,7 +887,7 @@ export const GithubRunCommand = cmd({
             providerID,
             modelID,
           },
-          // agent is omitted - server will use default_agent from config or fall back to "build"
+          // agent is omitted - server will use default_agent from config or fall back to "gartenmeister"
           parts: [
             {
               id: Identifier.ascending("part"),

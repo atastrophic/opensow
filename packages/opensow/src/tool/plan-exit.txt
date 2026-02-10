@@ -1,6 +1,6 @@
 Use this tool when you have completed the research phase and are ready to exit the research agent.
 
-This tool will ask the user if they want to switch to build agent to start implementing based on the research.
+This tool will ask the user if they want to switch to gartenmeister to start implementing based on the research.
 
 Call this tool:
 - After you have written your research findings to the research file

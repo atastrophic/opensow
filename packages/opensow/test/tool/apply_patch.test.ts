@@ -9,7 +9,7 @@ const baseCtx = {
   sessionID: "test",
   messageID: "",
   callID: "",
-  agent: "build",
+  agent: "gartenmeister",
   abort: AbortSignal.any([]),
   messages: [],
   metadata: () => {},
