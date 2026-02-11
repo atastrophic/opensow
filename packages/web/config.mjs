@@ -5,7 +5,7 @@ export default {
   console: stage === "production" ? "https://opensow.ai/auth" : `https://${stage}.opensow.ai/auth`,
   email: "contact@anoma.ly",
   socialCard: "https://social-cards.sst.dev",
-  github: "https://github.com/anomalyco/opensow",
+  github: "https://github.com/atasrophic/opensow",
   discord: "https://opensow.ai/discord",
   headerLinks: [
     { name: "Home", url: "/" },

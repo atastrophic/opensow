@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://opensow.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
   <a href="https://www.npmjs.com/package/opensow-ai"><img alt="npm" src="https://img.shields.io/npm/v/opensow-ai?style=flat-square" /></a>
-  <a href="https://github.com/anomalyco/opensow/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/anomalyco/opensow/publish.yml?style=flat-square&branch=dev" /></a>
+  <a href="https://github.com/atasrophic/opensow/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/atasrophic/opensow/publish.yml?style=flat-square&branch=dev" /></a>
 </p>
 
 <p align="center">
@@ -46,11 +46,11 @@ curl -fsSL https://opensow.ai/install | bash
 npm i -g opensow-ai@latest        # 也可使用 bun/pnpm/yarn
 scoop install opensow             # Windows
 choco install opensow             # Windows
-brew install anomalyco/tap/opensow # macOS 與 Linux（推薦，始終保持最新）
+brew install atasrophic/tap/opensow # macOS 與 Linux（推薦，始終保持最新）
 brew install opensow              # macOS 與 Linux（官方 brew formula，更新頻率較低）
 paru -S opensow-bin               # Arch Linux
 mise use -g opensow               # 任何作業系統
-nix run nixpkgs#opensow           # 或使用 github:anomalyco/opensow 以取得最新開發分支
+nix run nixpkgs#opensow           # 或使用 github:atasrophic/opensow 以取得最新開發分支
 ```
 
 > [!TIP]
@@ -58,7 +58,7 @@ nix run nixpkgs#opensow           # 或使用 github:anomalyco/opensow 以取得
 
 ### 桌面應用程式 (BETA)
 
-OpenSow 也提供桌面版應用程式。您可以直接從 [發佈頁面 (releases page)](https://github.com/anomalyco/opensow/releases) 或 [opensow.ai/download](https://opensow.ai/download) 下載。
+OpenSow 也提供桌面版應用程式。您可以直接從 [發佈頁面 (releases page)](https://github.com/atasrophic/opensow/releases) 或 [opensow.ai/download](https://opensow.ai/download) 下載。
 
 | 平台                  | 下載連結                              |
 | --------------------- | ------------------------------------- |

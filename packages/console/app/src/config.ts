@@ -7,7 +7,7 @@ export const config = {
 
   // GitHub
   github: {
-    repoUrl: "https://github.com/anomalyco/opensow",
+    repoUrl: "https://github.com/atasrophic/opensow",
     starsFormatted: {
       compact: "80K",
       full: "80,000",

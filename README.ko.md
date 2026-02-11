@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://opensow.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
   <a href="https://www.npmjs.com/package/opensow-ai"><img alt="npm" src="https://img.shields.io/npm/v/opensow-ai?style=flat-square" /></a>
-  <a href="https://github.com/anomalyco/opensow/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/anomalyco/opensow/publish.yml?style=flat-square&branch=dev" /></a>
+  <a href="https://github.com/atasrophic/opensow/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/atasrophic/opensow/publish.yml?style=flat-square&branch=dev" /></a>
 </p>
 
 <p align="center">
@@ -46,11 +46,11 @@ curl -fsSL https://opensow.ai/install | bash
 npm i -g opensow-ai@latest        # bun/pnpm/yarn 도 가능
 scoop install opensow             # Windows
 choco install opensow             # Windows
-brew install anomalyco/tap/opensow # macOS 및 Linux (권장, 항상 최신)
+brew install atasrophic/tap/opensow # macOS 및 Linux (권장, 항상 최신)
 brew install opensow              # macOS 및 Linux (공식 brew formula, 업데이트 빈도 낮음)
 paru -S opensow-bin               # Arch Linux
 mise use -g opensow               # 어떤 OS든
-nix run nixpkgs#opensow           # 또는 github:anomalyco/opensow 로 최신 dev 브랜치
+nix run nixpkgs#opensow           # 또는 github:atasrophic/opensow 로 최신 dev 브랜치
 ```
 
 > [!TIP]
@@ -58,7 +58,7 @@ nix run nixpkgs#opensow           # 또는 github:anomalyco/opensow 로 최신 d
 
 ### 데스크톱 앱 (BETA)
 
-OpenSow 는 데스크톱 앱으로도 제공됩니다. [releases page](https://github.com/anomalyco/opensow/releases) 에서 직접 다운로드하거나 [opensow.ai/download](https://opensow.ai/download) 를 이용하세요.
+OpenSow 는 데스크톱 앱으로도 제공됩니다. [releases page](https://github.com/atasrophic/opensow/releases) 에서 직접 다운로드하거나 [opensow.ai/download](https://opensow.ai/download) 를 이용하세요.
 
 | 플랫폼                | 다운로드                              |
 | --------------------- | ------------------------------------- |

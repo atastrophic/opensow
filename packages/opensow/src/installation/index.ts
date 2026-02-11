@@ -121,8 +121,8 @@ export namespace Installation {
   )
 
   async function getBrewFormula() {
-    const tapFormula = await $`brew list --formula anomalyco/tap/opensow`.throws(false).quiet().text()
-    if (tapFormula.includes("opensow")) return "anomalyco/tap/opensow"
+    const tapFormula = await $`brew list --formula atasrophic/tap/opensow`.throws(false).quiet().text()
+    if (tapFormula.includes("opensow")) return "atasrophic/tap/opensow"
     const coreFormula = await $`brew list --formula opensow`.throws(false).quiet().text()
     if (coreFormula.includes("opensow")) return "opensow"
     return "opensow"
@@ -236,7 +236,7 @@ export namespace Installation {
         .then((data: any) => data.version)
     }
 
-    return fetch("https://api.github.com/repos/anomalyco/opensow/releases/latest")
+    return fetch("https://api.github.com/repos/atasrophic/opensow/releases/latest")
       .then((res) => {
         if (!res.ok) throw new Error(res.statusText)
         return res.json()

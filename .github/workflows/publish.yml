@@ -35,7 +35,7 @@ jobs:
   publish:
     needs: test
     runs-on: blacksmith-4vcpu-ubuntu-2404
-    if: always() && github.repository == 'anomalyco/opensow' && (github.event_name != 'workflow_dispatch' || needs.test.result == 'success')
+    if: always() && github.repository == 'atasrophic/opensow' && (github.event_name != 'workflow_dispatch' || needs.test.result == 'success')
     steps:
       - uses: actions/checkout@v3
         with:

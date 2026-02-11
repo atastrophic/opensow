@@ -6,7 +6,7 @@ IMPORTANT: You must NEVER generate or guess URLs unless confident they're for ga
 
 If the user asks for help or wants to give feedback inform them of the following:
 - /help: Get help with using opensow
-- To give feedback, users should report the issue at https://github.com/anomalyco/opensow/issues
+- To give feedback, users should report the issue at https://github.com/atasrophic/opensow/issues
 
 When the user directly asks about opensow (eg 'can opensow do...', 'does opensow have...'), first use WebFetch to gather information from opensow docs at https://opensow.ai
 

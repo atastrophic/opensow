@@ -11,7 +11,7 @@
 <p align="center">
   <a href="https://opensow.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
   <a href="https://www.npmjs.com/package/opensow-ai"><img alt="npm" src="https://img.shields.io/npm/v/opensow-ai?style=flat-square" /></a>
-  <a href="https://github.com/anomalyco/opensow/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/anomalyco/opensow/publish.yml?style=flat-square&branch=dev" /></a>
+  <a href="https://github.com/atasrophic/opensow/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/atasrophic/opensow/publish.yml?style=flat-square&branch=dev" /></a>
 </p>
 
 <p align="center">
@@ -46,11 +46,11 @@ curl -fsSL https://opensow.ai/install | bash
 npm i -g opensow-ai@latest        # او bun/pnpm/yarn
 scoop install opensow             # Windows
 choco install opensow             # Windows
-brew install anomalyco/tap/opensow # macOS و Linux (موصى به، دائما محدث)
+brew install atasrophic/tap/opensow # macOS و Linux (موصى به، دائما محدث)
 brew install opensow              # macOS و Linux (صيغة brew الرسمية، تحديث اقل)
 paru -S opensow-bin               # Arch Linux
 mise use -g opensow               # اي نظام
-nix run nixpkgs#opensow           # او github:anomalyco/opensow لاحدث فرع dev
+nix run nixpkgs#opensow           # او github:atasrophic/opensow لاحدث فرع dev
 ```
 
 > [!TIP]
@@ -58,7 +58,7 @@ nix run nixpkgs#opensow           # او github:anomalyco/opensow لاحدث ف�
 
 ### تطبيق سطح المكتب (BETA)
 
-يتوفر OpenSow ايضا كتطبيق سطح مكتب. قم بالتنزيل مباشرة من [صفحة الاصدارات](https://github.com/anomalyco/opensow/releases) او من [opensow.ai/download](https://opensow.ai/download).
+يتوفر OpenSow ايضا كتطبيق سطح مكتب. قم بالتنزيل مباشرة من [صفحة الاصدارات](https://github.com/atasrophic/opensow/releases) او من [opensow.ai/download](https://opensow.ai/download).
 
 | المنصة                | التنزيل                               |
 | --------------------- | ------------------------------------- |

@@ -154,7 +154,7 @@ export default function Home() {
             <a href="https://x.com/opensow">X.com</a>
           </div>
           <div data-slot="cell">
-            <a href="https://github.com/anomalyco/opensow">GitHub</a>
+            <a href="https://github.com/atasrophic/opensow">GitHub</a>
           </div>
           <div data-slot="cell">
             <a href="https://opensow.ai/discord">Discord</a>

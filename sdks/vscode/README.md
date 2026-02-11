@@ -15,7 +15,7 @@ This extension requires the [opensow CLI](https://opensow.ai) to be installed on
 
 ## Support
 
-This is an early release. If you encounter issues or have feedback, please create an issue at https://github.com/anomalyco/opensow/issues.
+This is an early release. If you encounter issues or have feedback, please create an issue at https://github.com/atasrophic/opensow/issues.
 
 ## Development
 

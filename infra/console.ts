@@ -7,7 +7,7 @@ import { EMAILOCTOPUS_API_KEY } from "./app"
 
 const cluster = planetscale.getDatabaseOutput({
   name: "opensow",
-  organization: "anomalyco",
+  organization: "atasrophic",
 })
 
 const branch =
