@@ -150,7 +150,7 @@ export namespace Agent {
           }),
           user,
         ),
-        description: `Fast agent specialized for exploring codebases. Use this when you need to quickly find files by patterns (eg. "src/components/**/*.tsx"), search code for keywords (eg. "API endpoints"), or answer questions about the codebase (eg. "how do API endpoints work?"). When calling this agent, specify the desired thoroughness level: "quick" for basic searches, "medium" for moderate exploration, or "very thorough" for comprehensive analysis across multiple locations and naming conventions.`,
+        description: `The scout — a fast, read-only explorer of the garden grounds. Use this when you need to quickly find plants by pattern (eg. "src/beds/**/*.tsx"), search beds for specific growth (eg. "root vegetables"), or answer questions about the garden layout (eg. "where are the perennials planted?"). When dispatching this scout, specify the desired thoroughness: "quick" for a glance over the fence, "medium" for a walk through the rows, or "very thorough" for a full survey of every bed and path.`,
         prompt: PROMPT_EXPLORE,
         options: {},
         mode: "subagent",

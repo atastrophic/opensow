@@ -52,7 +52,7 @@ export type PromptRef = {
   submit(): void
 }
 
-const PLACEHOLDERS = ["Fix a TODO in the codebase", "What is the tech stack of this project?", "Fix broken tests"]
+const PLACEHOLDERS = ["Pull a weed from the garden", "What grows in this plot?", "Prune the dead branches"]
 
 export function Prompt(props: PromptProps) {
   let input: TextareaRenderable
