@@ -14,7 +14,7 @@ export const CropReadTool = Tool.define("crop_read", {
     if (!info)
       return {
         title: "Not found",
-        metadata: {},
+        metadata: {} as { id: string; seasonId: string },
         output: `Crop ${params.cropId} not found in season ${params.seasonId}.`,
       }
     return {

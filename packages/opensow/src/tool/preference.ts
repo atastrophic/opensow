@@ -16,7 +16,7 @@ export const PreferenceTool = Tool.define("preference", {
     if (!active)
       return {
         title: "Preference",
-        metadata: {},
+        metadata: {} as { seasonId: string },
         output: "No active season found for this garden. Start a season first.",
       }
     const info = await SeasonStorage.update(args.gardenId, active.id, (draft) => {

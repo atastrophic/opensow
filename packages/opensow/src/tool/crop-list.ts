@@ -13,7 +13,7 @@ export const CropListTool = Tool.define("crop_list", {
     if (crops.length === 0)
       return {
         title: "No crops",
-        metadata: {},
+        metadata: {} as { count: number },
         output: `No crops found in season ${params.seasonId}.`,
       }
     const summary = crops.map((c) => `- ${c.name} (id: ${c.id})`).join("\n")

@@ -259,7 +259,7 @@ describe("Season persistence: migrate", () => {
 
     // Simulate migration: filter perennials from archived, add to active
     const source = await Storage.read<Season.Info>([PREFIX, gardenId, old.id])
-    const ids = new Set([rosemaryId, lavenderId, tomatoId])
+    const ids = new Set<string>([rosemaryId, lavenderId, tomatoId])
     const perennials = source.plants.filter((p) => p.perennial && ids.has(p.id))
     const migrated = perennials.map((p) => ({
       id: crypto.randomUUID(),
@@ -298,7 +298,7 @@ describe("Season persistence: migrate", () => {
     await Storage.write([PREFIX, gardenId, current.id], current)
 
     const source = await Storage.read<Season.Info>([PREFIX, gardenId, old.id])
-    const ids = new Set([tomatoId])
+    const ids = new Set<string>([tomatoId])
     const perennials = source.plants.filter((p) => p.perennial && ids.has(p.id))
     expect(perennials).toHaveLength(0)
   })
@@ -321,7 +321,7 @@ describe("Season persistence: migrate", () => {
 
     const source = await Storage.read<Season.Info>([PREFIX, gardenId, old.id])
     const ids = new Set(["unknown-id-1", "unknown-id-2"])
-    const perennials = source.plants.filter((p) => p.perennial && ids.has(p.id))
+    const perennials = source.plants.filter((p) => p.perennial && ids.has(p.id as string))
     expect(perennials).toHaveLength(0)
   })
 })

@@ -15,7 +15,7 @@ export const RecommendTool = Tool.define("recommend", {
     if (!active)
       return {
         title: "Recommend",
-        metadata: {},
+        metadata: {} as { gardenId: string; seasonId: string },
         output: "No active season found for this garden. Start a season first.",
       }
     const lines = [

@@ -19,14 +19,14 @@ export const PlannerTool = Tool.define("planner", {
     if (!garden)
       return {
         title: "Planner",
-        metadata: {},
+        metadata: {} as { gardenId: string; seasonId: string; crops: number; spaces: number },
         output: "Garden not found. Use garden_list to see available gardens.",
       }
     const active = await SeasonStorage.active(args.gardenId)
     if (!active)
       return {
         title: "Planner",
-        metadata: {},
+        metadata: {} as { gardenId: string; seasonId: string; crops: number; spaces: number },
         output: "No active season found for this garden. Start a season first.",
       }
     const crops = await CropStorage.list(active.id)

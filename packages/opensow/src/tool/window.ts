@@ -19,14 +19,14 @@ export const WindowTool = Tool.define("window", {
     if (!garden)
       return {
         title: "Window",
-        metadata: {},
+        metadata: {} as { gardenId: string; seasonId: string },
         output: "Garden not found. Use garden_list to see available gardens.",
       }
     const active = await SeasonStorage.active(args.gardenId)
     if (!active)
       return {
         title: "Window",
-        metadata: {},
+        metadata: {} as { gardenId: string; seasonId: string },
         output: "No active season found for this garden. Start a season first.",
       }
     const crops = await CropStorage.list(active.id)
