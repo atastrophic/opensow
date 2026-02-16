@@ -28,6 +28,7 @@ OpenSow is a CLI gardening agent. It helps gardeners plan and manage their garde
 
 - The default branch in this repo is `dev`.
 - To regenerate the JavaScript SDK, run `./packages/sdk/js/script/build.ts`.
+- To build and install the CLI binary locally, run `bun run packages/opensow/script/install-local.ts`. This builds the binary for the current platform and symlinks it to `~/.local/bin/opensow`.
 - ALWAYS USE PARALLEL TOOLS WHEN APPLICABLE.
 
 ## Engineering Style

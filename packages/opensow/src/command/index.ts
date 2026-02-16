@@ -69,7 +69,7 @@ export namespace Command {
       },
       [Default.REVIEW]: {
         name: Default.REVIEW,
-        description: "review changes [commit|branch|pr], defaults to uncommitted",
+        description: "review season plan [garden|crops|schedule], defaults to all gardens",
         get template() {
           return PROMPT_REVIEW.replace("${path}", Instance.worktree)
         },
