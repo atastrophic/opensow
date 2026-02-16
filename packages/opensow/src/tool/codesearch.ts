@@ -38,7 +38,7 @@ export const CodeSearchTool = Tool.define("codesearch", {
     query: z
       .string()
       .describe(
-        "Search query to find relevant context for APIs, Libraries, and SDKs. For example, 'React useState hook examples', 'Python pandas dataframe filtering', 'Express.js middleware', 'Next js partial prerendering configuration'",
+        "Search query to find relevant context for gardening, plant varieties, and growing practices. For example, 'companion planting tomatoes basil', 'USDA zone 6a frost dates', 'organic pest control aphids', 'raised bed soil mix recipe'",
       ),
     tokensNum: z
       .number()
@@ -93,7 +93,7 @@ export const CodeSearchTool = Tool.define("codesearch", {
 
       if (!response.ok) {
         const errorText = await response.text()
-        throw new Error(`Code search error (${response.status}): ${errorText}`)
+        throw new Error(`Search error (${response.status}): ${errorText}`)
       }
 
       const responseText = await response.text()
@@ -106,7 +106,7 @@ export const CodeSearchTool = Tool.define("codesearch", {
           if (data.result && data.result.content && data.result.content.length > 0) {
             return {
               output: data.result.content[0].text,
-              title: `Code search: ${params.query}`,
+              title: `Search: ${params.query}`,
               metadata: {},
             }
           }
@@ -115,15 +115,15 @@ export const CodeSearchTool = Tool.define("codesearch", {
 
       return {
         output:
-          "No code snippets or documentation found. Please try a different query, be more specific about the library or programming concept, or check the spelling of framework names.",
-        title: `Code search: ${params.query}`,
+          "No relevant results found. Please try a different query, be more specific about the plant variety or gardening practice, or check your spelling.",
+        title: `Search: ${params.query}`,
         metadata: {},
       }
     } catch (error) {
       clearTimeout(timeoutId)
 
       if (error instanceof Error && error.name === "AbortError") {
-        throw new Error("Code search request timed out")
+        throw new Error("Search request timed out")
       }
 
       throw error

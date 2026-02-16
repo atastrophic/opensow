@@ -1,12 +1,12 @@
-- Search and get relevant context for any programming task using Exa Code API
-- Provides the highest quality and freshest context for libraries, SDKs, and APIs
-- Use this tool for ANY question or task related to programming
-- Returns comprehensive code examples, documentation, and API references
-- Optimized for finding specific programming patterns and solutions
+- Search and get relevant context for gardening, horticulture, and plant science using Exa API
+- Provides the highest quality and freshest context for plant varieties, growing techniques, and pest solutions
+- Use this tool for ANY question or task related to gardening research
+- Returns comprehensive articles, documentation, and reference material
+- Optimized for finding specific horticultural patterns and solutions
 
 Usage notes:
   - Adjustable token count (1000-50000) for focused or comprehensive results
   - Default 5000 tokens provides balanced context for most queries
   - Use lower values for specific questions, higher values for comprehensive documentation
-  - Supports queries about frameworks, libraries, APIs, and programming concepts
-  - Examples: 'React useState hook examples', 'Python pandas dataframe filtering', 'Express.js middleware'
+  - Supports queries about plant varieties, growing conditions, pest management, and gardening practices
+  - Examples: 'companion planting tomatoes basil', 'USDA zone 6a frost dates', 'organic pest control aphids'

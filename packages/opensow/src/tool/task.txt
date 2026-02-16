@@ -6,12 +6,12 @@ Available agent types and the tools they have access to:
 When using the Task tool, you must specify a subagent_type parameter to select which agent type to use.
 
 When to use the Task tool:
-- When you are instructed to execute custom slash commands. Use the Task tool with the slash command invocation as the entire prompt. The slash command can take arguments. For example: Task(description="Check the file", prompt="/check-file path/to/file.py")
+- When you are instructed to execute custom slash commands. Use the Task tool with the slash command invocation as the entire prompt. The slash command can take arguments. For example: Task(description="Check the garden", prompt="/check-garden bed-a")
 
 When NOT to use the Task tool:
 - If you want to read a specific file path, use the Read or Glob tool instead of the Task tool, to find the match more quickly
-- If you are searching for a specific class definition like "class Foo", use the Glob tool instead, to find the match more quickly
-- If you are searching for code within a specific file or set of 2-3 files, use the Read tool instead of the Task tool, to find the match more quickly
+- If you are searching for a specific record like a crop entry or garden state, use the Glob tool instead, to find the match more quickly
+- If you are searching for content within a specific file or set of 2-3 files, use the Read tool instead of the Task tool, to find the match more quickly
 - Other tasks that are not related to the agent descriptions above
 
 
@@ -20,35 +20,32 @@ Usage notes:
 2. When the agent is done, it will return a single message back to you. The result returned by the agent is not visible to the user. To show the user the result, you should send a text message back to the user with a concise summary of the result.
 3. Each agent invocation is stateless unless you provide a session_id. Your prompt should contain a highly detailed task description for the agent to perform autonomously and you should specify exactly what information the agent should return back to you in its final and only message to you.
 4. The agent's outputs should generally be trusted
-5. Clearly tell the agent whether you expect it to write code or just to do research (search, file reads, web fetches, etc.), since it is not aware of the user's intent
+5. Clearly tell the agent whether you expect it to make changes or just to do research (search, file reads, web fetches, etc.), since it is not aware of the user's intent
 6. If the agent description mentions that it should be used proactively, then you should try your best to use it without the user having to ask for it first. Use your judgement.
 
 Example usage (NOTE: The agents below are fictional examples for illustration only - use the actual agents listed above):
 
 <example_agent_descriptions>
-"code-reviewer": use this agent after you are done writing a significant piece of code
+"plan-reviewer": use this agent after you are done creating a garden plan
 "greeting-responder": use this agent when to respond to user greetings with a friendly joke
 </example_agent_description>
 
 <example>
-user: "Please write a function that checks if a number is prime"
-assistant: Sure let me write a function that checks if a number is prime
-assistant: First let me use the Write tool to write a function that checks if a number is prime
-assistant: I'm going to use the Write tool to write the following code:
-<code>
-function isPrime(n) {
-  if (n <= 1) return false
-  for (let i = 2; i * i <= n; i++) {
-    if (n % i === 0) return false
-  }
-  return true
-}
-</code>
+user: "Help me plan a raised bed for herbs"
+assistant: Sure, let me plan a raised bed for herbs
+assistant: First let me use the Read tool to check your garden state
+assistant: I'm going to use the Write tool to create the following plan:
+<plan>
+Raised Bed A (4x8 ft):
+- Basil: 4 squares, full sun side
+- Rosemary: 2 squares, corner positions
+- Thyme: 2 squares, border plantings
+</plan>
 <commentary>
-Since a significant piece of code was written and the task was completed, now use the code-reviewer agent to review the code
+Since a garden plan was created and the task was completed, now use the plan-reviewer agent to review the plan
 </commentary>
-assistant: Now let me use the code-reviewer agent to review the code
-assistant: Uses the Task tool to launch the code-reviewer agent
+assistant: Now let me use the plan-reviewer agent to review the plan
+assistant: Uses the Task tool to launch the plan-reviewer agent
 </example>
 
 <example>

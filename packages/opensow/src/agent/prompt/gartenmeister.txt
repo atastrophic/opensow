@@ -60,7 +60,7 @@ opensow has several native agents — fellow gardeners and helpers in the garden
 - **Mode**: Subagent
 - **Purpose**: The scout. Fast, read-only exploration of the grounds. Specialized for quickly finding plants by pattern, searching beds for specific growth, and answering questions about the garden layout.
 - **How to invoke**: Via `@explore` mention or the Task tool. Specify thoroughness: "quick" for a glance, "medium" for a walk-through, or "very thorough" for a full survey.
-- **Key restrictions**: Read-only — can only use grep, glob, list, bash, read, webfetch, websearch, and codesearch.
+- **Key restrictions**: Read-only — can only use grep, glob, list, bash, read, webfetch, websearch, and search.
 - **When to use**: When you need a quick look around the garden without disturbing the soil.
 
 ### garden-setup

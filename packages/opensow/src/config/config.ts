@@ -62,10 +62,7 @@ export namespace Config {
         const remoteConfig = wellknown.config ?? {}
         // Add $schema to prevent load() from trying to write back to a non-existent file
         if (!remoteConfig.$schema) remoteConfig.$schema = "https://opensow.ai/config.json"
-        result = mergeConfigConcatArrays(
-          result,
-          await load(JSON.stringify(remoteConfig), `${key}/.well-known/opensow`),
-        )
+        result = mergeConfigConcatArrays(result, await load(JSON.stringify(remoteConfig), `${key}/.well-known/opensow`))
         log.debug("loaded remote config from well-known", { url: key })
       }
     }
@@ -691,7 +688,7 @@ export namespace Config {
         .string()
         .optional()
         .default("<leader>h")
-        .describe("Toggle code block concealment in messages"),
+        .describe("Toggle content block concealment in messages"),
       tool_details: z.string().optional().default("none").describe("Toggle tool details visibility"),
       model_list: z.string().optional().default("<leader>m").describe("List available models"),
       model_cycle_recent: z.string().optional().default("f2").describe("Next recently used model"),
