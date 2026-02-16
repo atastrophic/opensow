@@ -14,6 +14,12 @@ import PROMPT_EXPLORE from "./prompt/explore.txt"
 import PROMPT_SUMMARY from "./prompt/summary.txt"
 import PROMPT_TITLE from "./prompt/title.txt"
 import PROMPT_GARTENMEISTER from "./prompt/gartenmeister.txt"
+import PROMPT_GARDEN_SETUP from "./prompt/garden-setup.txt"
+import PROMPT_SEASON_MANAGEMENT from "./prompt/season-management.txt"
+import PROMPT_CROP_DATA from "./prompt/crop-data.txt"
+import PROMPT_GUIDED_PLANTING from "./prompt/guided-planting.txt"
+import PROMPT_DIRECT_PLANTING from "./prompt/direct-planting.txt"
+import PROMPT_SEASON_PLANNER from "./prompt/season-planner.txt"
 import { PermissionNext } from "@/permission/next"
 import { mergeDeep, pipe, sortBy, values } from "remeda"
 import { Global } from "@/global"
@@ -74,7 +80,8 @@ export namespace Agent {
     const result: Record<string, Info> = {
       gartenmeister: {
         name: "gartenmeister",
-        description: "The Gartenmeister — master gardener and default agent. Full tool access for executing plans, making changes, and running commands.",
+        description:
+          "The Gartenmeister — master gardener and default agent. Full tool access for executing plans, making changes, and running commands.",
         options: {},
         prompt: PROMPT_GARTENMEISTER,
         permission: PermissionNext.merge(
@@ -82,6 +89,7 @@ export namespace Agent {
           PermissionNext.fromConfig({
             question: "allow",
             research_enter: "allow",
+            status: "allow",
           }),
           user,
         ),
@@ -153,6 +161,130 @@ export namespace Agent {
         description: `The scout — a fast, read-only explorer of the garden grounds. Use this when you need to quickly find plants by pattern (eg. "src/beds/**/*.tsx"), search beds for specific growth (eg. "root vegetables"), or answer questions about the garden layout (eg. "where are the perennials planted?"). When dispatching this scout, specify the desired thoroughness: "quick" for a glance over the fence, "medium" for a walk through the rows, or "very thorough" for a full survey of every bed and path.`,
         prompt: PROMPT_EXPLORE,
         options: {},
+        mode: "subagent",
+        native: true,
+      },
+      "garden-setup": {
+        name: "garden-setup",
+        description:
+          "Garden setup specialist. Guides users through creating a garden with location, climate, and growing spaces.",
+        options: {},
+        prompt: PROMPT_GARDEN_SETUP,
+        permission: PermissionNext.merge(
+          defaults,
+          PermissionNext.fromConfig({
+            "*": "deny",
+            garden_create: "allow",
+            garden_space_add: "allow",
+            garden_list: "allow",
+          }),
+          user,
+        ),
+        mode: "subagent",
+        native: true,
+      },
+      "season-management": {
+        name: "season-management",
+        description:
+          "Season management specialist. Guides users through starting seasons, migrating perennial plants, and choosing planting approaches.",
+        options: {},
+        prompt: PROMPT_SEASON_MANAGEMENT,
+        permission: PermissionNext.merge(
+          defaults,
+          PermissionNext.fromConfig({
+            "*": "deny",
+            season_start: "allow",
+            season_list: "allow",
+            season_migrate: "allow",
+            garden_list: "allow",
+          }),
+          user,
+        ),
+        mode: "subagent",
+        native: true,
+      },
+      "crop-data": {
+        name: "crop-data",
+        description:
+          "Crop data specialist. Populates detailed agronomic data for plants using horticultural knowledge and garden context.",
+        options: {},
+        prompt: PROMPT_CROP_DATA,
+        permission: PermissionNext.merge(
+          defaults,
+          PermissionNext.fromConfig({
+            "*": "deny",
+            crop_create: "allow",
+            crop_read: "allow",
+            crop_list: "allow",
+            crop_remove: "allow",
+            garden_list: "allow",
+          }),
+          user,
+        ),
+        mode: "subagent",
+        native: true,
+      },
+      "guided-planting": {
+        name: "guided-planting",
+        description:
+          "Guided planting specialist. Runs the gardener type and engagement level quiz, generates curated plant recommendations based on zone, spaces, and preferences, and delegates to crop-data for selected plants.",
+        options: {},
+        prompt: PROMPT_GUIDED_PLANTING,
+        permission: PermissionNext.merge(
+          defaults,
+          PermissionNext.fromConfig({
+            "*": "deny",
+            preference: "allow",
+            recommend: "allow",
+            garden_list: "allow",
+            season_list: "allow",
+            task: "allow",
+          }),
+          user,
+        ),
+        mode: "subagent",
+        native: true,
+      },
+      "direct-planting": {
+        name: "direct-planting",
+        description:
+          "Direct planting specialist. Collects plants from users who know what they want to grow, supports full-season or current-window modes, and delegates to crop-data for each plant.",
+        options: {},
+        prompt: PROMPT_DIRECT_PLANTING,
+        permission: PermissionNext.merge(
+          defaults,
+          PermissionNext.fromConfig({
+            "*": "deny",
+            window: "allow",
+            garden_list: "allow",
+            season_list: "allow",
+            crop_list: "allow",
+            task: "allow",
+          }),
+          user,
+        ),
+        mode: "subagent",
+        native: true,
+      },
+      "season-planner": {
+        name: "season-planner",
+        description:
+          "Season planner specialist. Generates square foot gardening layouts, companion planting arrangements, succession planting schedules, and month-by-month timelines from collected crops and garden spaces.",
+        options: {},
+        prompt: PROMPT_SEASON_PLANNER,
+        permission: PermissionNext.merge(
+          defaults,
+          PermissionNext.fromConfig({
+            "*": "deny",
+            planner: "allow",
+            garden_list: "allow",
+            season_list: "allow",
+            crop_list: "allow",
+            crop_read: "allow",
+            task: "allow",
+          }),
+          user,
+        ),
         mode: "subagent",
         native: true,
       },

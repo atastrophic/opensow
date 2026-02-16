@@ -1,0 +1,3 @@
+List all seasons for a garden.
+- Shows each season's year, status (active or archived), and number of plant references
+- Use this tool to check existing seasons before starting a new one

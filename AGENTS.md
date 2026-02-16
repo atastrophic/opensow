@@ -107,3 +107,22 @@ const bazFoo = 3
 
 You MUST avoid using `mocks` as much as possible.
 Tests MUST test actual implementation, do not duplicate logic into a test.
+
+## OpenSpec Workflow
+
+This project uses [fission-ai/openspec](https://github.com/fission-ai/openspec) for structured feature development.
+
+- All features from `project.md` are implemented as separate OpenSpec changes
+- Each change follows the step-by-step workflow: `/opsx-new` -> `/opsx-continue` (proposal -> specs -> design -> tasks) -> `/opsx-apply` -> `/opsx-verify` -> `/opsx-archive`
+- Progress is tracked in the Implementation Tracking table in `project.md`
+- When resuming work across sessions, check `project.md` for the current feature and its OpenSpec phase, then use the appropriate `/opsx-*` command to continue
+- Code for all gardening features lives in `packages/opensow`
+- Feature order and dependencies are defined in `project.md`
+
+### Important: One feature at a time
+
+- Each OpenSpec change MUST be self-contained: it defines its own data model, persistence, and agent logic
+- Do NOT create cross-cutting changes like "core-data-model" or "shared-infrastructure" that span multiple features
+- Data structures and persistence emerge incrementally with the feature that needs them
+- Only work on ONE change at a time. Complete the full lifecycle (new -> apply -> archive) before starting the next
+- Later features build on prior ones by importing their types and functions, not by relying on a shared upfront design

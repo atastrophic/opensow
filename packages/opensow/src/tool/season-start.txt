@@ -1,0 +1,4 @@
+Start a new growing season for a garden.
+- Provide the garden ID and the year for the new season
+- If the garden already has an active season, it will be archived automatically
+- The agent should warn the user about archiving before calling this tool

@@ -1,0 +1,3 @@
+List all gardens with their basic info and space counts.
+- Shows each garden's name, ID, zone, and number of growing spaces
+- Use this tool to see what gardens exist before adding spaces or making changes

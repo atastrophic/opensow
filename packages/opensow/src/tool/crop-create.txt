@@ -1,0 +1,6 @@
+Create a new crop record with full agronomic data for a season.
+- Provide the season ID and a plant name at minimum
+- Optionally include taxonomy, spacing, seed starting (indoor/outdoor), potting up, transplanting, cultivation, and harvest data
+- All sections except name and seasonId are nullable — populate what is known
+- The crop is persisted and linked to the specified season
+- Use this tool when adding plant data to a season

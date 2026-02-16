@@ -1,0 +1,4 @@
+Read the full crop record for a specific plant in a season.
+- Provide the season ID and crop ID
+- Returns the complete crop data including all agronomic sections
+- Use this tool when you need detailed information about a specific crop

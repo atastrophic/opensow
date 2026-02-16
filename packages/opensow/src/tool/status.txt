@@ -1,0 +1,4 @@
+Show the current state of all gardens, seasons, and crops at a glance.
+- Displays each garden's name, zone, space count, active season year, crop count, and archived season count
+- Use this tool to orient yourself at the start of a conversation before suggesting next steps
+- Read-only — does not modify any data

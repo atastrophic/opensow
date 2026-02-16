@@ -1,0 +1,4 @@
+Create a new garden with location and climate data.
+- Provide a friendly name, US ZIP code, USDA hardiness zone, and approximate first/last frost dates
+- The garden is persisted locally and can later have growing spaces added to it
+- Use this tool when the user wants to set up a new garden

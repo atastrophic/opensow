@@ -1,0 +1,4 @@
+Get the garden context needed to generate tailored plant recommendations.
+- Accepts gardenId and returns: garden name, zone, frost dates, spaces, season year, current date, gardener type, and engagement level
+- Use this tool after saving preferences to get the full context for generating curated recommendations
+- The output provides all the information needed to suggest plants suited to the user's zone, spaces, and preferences

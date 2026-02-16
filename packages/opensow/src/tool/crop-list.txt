@@ -1,0 +1,4 @@
+List all crops in a season.
+- Provide the season ID
+- Returns a summary with crop names and IDs
+- Use this tool to see what plants are tracked in a season

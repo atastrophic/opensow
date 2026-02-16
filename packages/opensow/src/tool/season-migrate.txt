@@ -1,0 +1,4 @@
+Migrate perennial plants from the most recently archived season to the current active season.
+- Provide the garden ID and a list of plant reference IDs to migrate
+- Only plants marked as perennial will be migrated; annual plants in the list are ignored
+- Migrated plants receive new UUIDs in the active season

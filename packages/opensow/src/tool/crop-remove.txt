@@ -1,0 +1,4 @@
+Remove a crop record from a season.
+- Provide the season ID and crop ID
+- The crop data is permanently deleted
+- Use this tool when a crop needs to be removed from the season

@@ -1,0 +1,1 @@
+Returns the current planting window for a garden based on its USDA zone, frost dates, and the current date. Shows which planting methods are currently active (indoor seed starting, direct sow, transplant outdoors) and how many weeks until the last frost date. Use this to advise users on what can be planted right now.

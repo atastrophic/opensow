@@ -1,0 +1,6 @@
+Add a growing space to an existing garden.
+- Supports four space types: in-ground bed, raised bed, pot, and tray
+- For beds: provide light exposure, length, width, and watering method
+- For pots: provide diameter and depth in inches (gallons are estimated automatically)
+- For trays: provide cell count (32, 48, 72, or 128; cell size is estimated automatically)
+- Use this tool after a garden has been created to define its growing areas

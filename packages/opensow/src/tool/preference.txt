@@ -1,0 +1,4 @@
+Save the user's gardener type and engagement level on the active season.
+- Accepts gardenId, gardenerType (chef/parent/homesteader), and engagement (low/standard/high)
+- Persists these preferences on the active season so they survive across sessions
+- Use this after completing the gardener type and engagement level quiz
