@@ -16,7 +16,7 @@ export const GardenSpaceAddTool = Tool.define("garden_space_add", {
     watering: z.string().optional().describe("Watering method (e.g. 'drip', 'hand', 'sprinkler'). Required for beds."),
     diameter: z.number().optional().describe("Pot diameter in inches. Required for pots."),
     depth: z.number().optional().describe("Pot depth in inches. Required for pots."),
-    cells: z.number().optional().describe("Number of cells (32, 48, 72, or 128). Required for trays."),
+    cells: z.number().optional().describe("Number of cells (32, 48, 64, 72, or 128). Required for trays."),
   }),
   async execute(params) {
     const id = crypto.randomUUID()

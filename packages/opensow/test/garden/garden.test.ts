@@ -53,7 +53,7 @@ describe("Garden schema validation", () => {
   })
 
   test("valid tray cells accepted", () => {
-    for (const cells of [32, 48, 72, 128]) {
+    for (const cells of [32, 48, 64, 72, 128]) {
       const result = Garden.Space.safeParse({
         id: crypto.randomUUID(),
         name: "Good Tray",
@@ -90,14 +90,16 @@ describe("Garden.estimateGallons", () => {
 
 describe("Garden.estimateCellSize", () => {
   test("returns correct cell size for standard counts", () => {
-    for (const cells of [32, 48, 72, 128] as const) {
+    for (const cells of [32, 48, 64, 72, 128] as const) {
       const size = Garden.estimateCellSize(cells)
       expect(size).toBeGreaterThan(0)
     }
   })
 
   test("larger cell counts have smaller cell sizes", () => {
-    expect(Garden.estimateCellSize(32)).toBeGreaterThan(Garden.estimateCellSize(72))
+    expect(Garden.estimateCellSize(32)).toBeGreaterThan(Garden.estimateCellSize(48))
+    expect(Garden.estimateCellSize(48)).toBeGreaterThan(Garden.estimateCellSize(64))
+    expect(Garden.estimateCellSize(64)).toBeGreaterThan(Garden.estimateCellSize(72))
     expect(Garden.estimateCellSize(72)).toBeGreaterThan(Garden.estimateCellSize(128))
   })
 })

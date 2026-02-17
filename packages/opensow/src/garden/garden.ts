@@ -2,13 +2,14 @@ import z from "zod"
 import { BusEvent } from "../bus/bus-event"
 
 export namespace Garden {
-  const TRAY_CELLS = [32, 48, 72, 128] as const
+  const TRAY_CELLS = [32, 48, 64, 72, 128] as const
 
   // Standard 1020 tray is ~11" x 21.5" ≈ 236.5 sq inches
   const TRAY_AREA = 236.5
   const TRAY_DEPTHS: Record<number, number> = {
     32: 2.5,
     48: 2.25,
+    64: 1.5,
     72: 1.5,
     128: 1.25,
   }
@@ -57,9 +58,11 @@ export namespace Garden {
     id: z.string().uuid(),
     name: z.string(),
     type: z.literal("tray"),
-    cells: z.number().refine((n): n is 32 | 48 | 72 | 128 => TRAY_CELLS.includes(n as (typeof TRAY_CELLS)[number]), {
-      message: "cells must be one of 32, 48, 72, 128",
-    }),
+    cells: z
+      .number()
+      .refine((n): n is 32 | 48 | 64 | 72 | 128 => TRAY_CELLS.includes(n as (typeof TRAY_CELLS)[number]), {
+        message: "cells must be one of 32, 48, 64, 72, 128",
+      }),
     cellSize: z.number(),
   })
 
