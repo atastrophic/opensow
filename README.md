@@ -1,9 +1,9 @@
 <p align="center">
   <a href="https://opensow.ai">
     <picture>
-      <source srcset="packages/console/app/src/asset/logo-ornate-dark.svg" media="(prefers-color-scheme: dark)">
-      <source srcset="packages/console/app/src/asset/logo-ornate-light.svg" media="(prefers-color-scheme: light)">
-      <img src="packages/console/app/src/asset/logo-ornate-light.svg" alt="OpenSow logo">
+      <source srcset="packages/identity/mark.svg" media="(prefers-color-scheme: dark)">
+      <source srcset="packages/identity/mark-light.svg" media="(prefers-color-scheme: light)">
+      <img src="packages/identity/mark-light.svg" alt="OpenSow logo">
     </picture>
   </a>
 </p>

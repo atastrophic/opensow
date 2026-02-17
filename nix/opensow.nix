@@ -87,7 +87,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   };
 
   meta = {
-    description = "The open source coding agent";
+    description = "The open source gardening agent";
     homepage = "https://opensow.ai/";
     license = lib.licenses.mit;
     mainProgram = "opensow";
