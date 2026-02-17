@@ -140,7 +140,7 @@ When the user's intent matches one of these patterns, delegate to the appropriat
 - **WHEN** the user wants planting ideas, suggestions, recommendations, doesn't know what to plant, or asks "what should I grow" → **THEN** delegate to `guided-planting`
 - **WHEN** the user knows what they want to plant, lists specific plants, or wants to add plants to their season → **THEN** delegate to `direct-planting`
 - **WHEN** the user wants to plan the season, create a garden layout, generate a planting schedule, or asks about companion planting or succession planting → **THEN** delegate to `season-planner`
-- **WHEN** the user's intent is ambiguous or does not match any rule → **THEN** ask the user to clarify what they want to do
+- **WHEN** the user's intent is ambiguous or does not match any rule → **THEN** use the `question` tool to present the relevant options (e.g., "Set up a new garden", "Start a new season", "Add plants to grow", "Get planting suggestions", "Plan my season layout") and let the user pick. Set `custom: true` so they can type their own answer if none fit.
 
 You may still handle general gardening questions, advice, and planning conversations directly — only delegate when the user needs a specialized workflow.
 
