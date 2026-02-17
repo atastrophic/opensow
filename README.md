@@ -7,11 +7,10 @@
     </picture>
   </a>
 </p>
-<p align="center">The open source AI coding agent.</p>
+<p align="center">The open source AI gardening agent.</p>
 <p align="center">
   <a href="https://opensow.ai/discord"><img alt="Discord" src="https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord" /></a>
   <a href="https://www.npmjs.com/package/opensow-ai"><img alt="npm" src="https://img.shields.io/npm/v/opensow-ai?style=flat-square" /></a>
-  <a href="https://github.com/atasrophic/opensow/actions/workflows/publish.yml"><img alt="Build status" src="https://img.shields.io/github/actions/workflow/status/atasrophic/opensow/publish.yml?style=flat-square&branch=dev" /></a>
 </p>
 
 <p align="center">
@@ -34,80 +33,58 @@
 
 ---
 
+OpenSow is a CLI gardening agent that helps you plan and manage your garden. Give it your location, available space, and what you want to grow — it turns that into clear plans, schedules, and checklists.
+
 ### Installation
 
 ```bash
-# YOLO
 curl -fsSL https://opensow.ai/install | bash
 
 # Package managers
 npm i -g opensow-ai@latest        # or bun/pnpm/yarn
-scoop install opensow             # Windows
-choco install opensow             # Windows
-brew install atasrophic/tap/opensow # macOS and Linux (recommended, always up to date)
-brew install opensow              # macOS and Linux (official brew formula, updated less)
-paru -S opensow-bin               # Arch Linux
-mise use -g opensow               # Any OS
-nix run nixpkgs#opensow           # or github:atasrophic/opensow for latest dev branch
+brew install atasrophic/tap/opensow # macOS and Linux
+nix run github:atasrophic/opensow  # Nix
 ```
 
-> [!TIP]
-> Remove versions older than 0.1.x before installing.
+### What It Does
 
-#### Installation Directory
-
-The install script respects the following priority order for the installation path:
-
-1. `$OPENCODE_INSTALL_DIR` - Custom installation directory
-2. `$XDG_BIN_DIR` - XDG Base Directory Specification compliant path
-3. `$HOME/bin` - Standard user binary directory (if exists or can be created)
-4. `$HOME/.opensow/bin` - Default fallback
-
-```bash
-# Examples
-OPENCODE_INSTALL_DIR=/usr/local/bin curl -fsSL https://opensow.ai/install | bash
-XDG_BIN_DIR=$HOME/.local/bin curl -fsSL https://opensow.ai/install | bash
-```
+- **Garden setup** — Walk through your location, USDA zone, frost dates, growing spaces (beds, containers, seed trays), light and watering conditions
+- **Season management** — Start a new growing season, migrate perennials from the previous year, archive old seasons
+- **Guided planting** — Take a quiz (Chef / Parent / Homesteader), set your engagement level, get curated plant recommendations tailored to your zone and spaces
+- **Direct planting** — Tell it exactly what you want to grow, either for the full season or the current planting window
+- **Crop data** — Detailed agronomic profiles for each plant: taxonomy, spacing, seed starting, transplanting, cultivation, harvest timing, and companion/antagonist info
+- **Season planning** — Square foot gardening layouts, companion planting arrangements, succession planting schedules, and month-by-month timelines
 
 ### Agents
 
-OpenSow includes two built-in agents you can switch between with the `Tab` key.
+OpenSow is driven by specialized agents that you can switch between with the `Tab` key.
 
-- **gartenmeister** - Default, full access agent for development work
-- **plan** - Read-only agent for analysis and code exploration
-  - Denies file edits by default
-  - Asks permission before running bash commands
-  - Ideal for exploring unfamiliar files or planning changes
+| Agent             | Role                                                                                                                             |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| **gartenmeister** | Default agent. The master gardener that orchestrates everything — routes to specialist subagents, executes plans, runs commands. |
+| **research**      | Read-only exploration mode. Browse your garden data, save findings to markdown.                                                  |
 
-Also, included is a **general** subagent for complex searches and multistep tasks.
-This is used internally and can be invoked using `@general` in messages.
+Behind the scenes, the gartenmeister delegates to purpose-built subagents:
 
-Learn more about [agents](https://opensow.ai/docs/agents).
+| Subagent              | Role                                                                                 |
+| --------------------- | ------------------------------------------------------------------------------------ |
+| **garden-setup**      | Guides you through creating a garden with location, climate zone, and growing spaces |
+| **season-management** | Starts seasons, migrates perennials, manages the season lifecycle                    |
+| **crop-data**         | Populates detailed agronomic data for each plant                                     |
+| **guided-planting**   | Runs the gardener type quiz and generates curated recommendations                    |
+| **direct-planting**   | Collects plants from users who already know what they want to grow                   |
+| **season-planner**    | Generates square foot layouts, companion planting, and month-by-month schedules      |
+| **general**           | General-purpose agent for complex multi-step tasks                                   |
+| **explore**           | Fast read-only scout for searching garden data                                       |
 
-### Documentation
+### Quick Start
 
-For more info on how to configure OpenSow [**head over to our docs**](https://opensow.ai/docs).
+```
+opensow
+```
 
-### Contributing
+The gartenmeister will greet you and walk you through setting up your first garden. From there you can start a season, add plants, and generate a plan.
 
-If you're interested in contributing to OpenSow, please read our [contributing docs](./CONTRIBUTING.md) before submitting a pull request.
+### License
 
-### Building on OpenSow
-
-If you are working on a project that's related to OpenSow and is using "opensow" as a part of its name; for example, "opensow-dashboard" or "opensow-mobile", please add a note to your README to clarify that it is not built by the OpenSow team and is not affiliated with us in any way.
-
-### FAQ
-
-#### How is this different from Claude Code?
-
-It's very similar to Claude Code in terms of capability. Here are the key differences:
-
-- 100% open source
-- Not coupled to any provider. Although we recommend the models we provide through [OpenSow Zen](https://opensow.ai/zen); OpenSow can be used with Claude, OpenAI, Google or even local models. As models evolve the gaps between them will close and pricing will drop so being provider-agnostic is important.
-- Out of the box LSP support
-- A focus on TUI. OpenSow is built by neovim users and the creators of [terminal.shop](https://terminal.shop); we are going to push the limits of what's possible in the terminal.
-- A client/server architecture. This for example can allow OpenSow to run on your computer, while you can drive it remotely from a mobile app. Meaning that the TUI frontend is just one of the possible clients.
-
----
-
-**Join our community** [Discord](https://discord.gg/opensow) | [X.com](https://x.com/opensow)
+MIT

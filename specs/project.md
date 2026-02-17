@@ -1,5 +1,7 @@
 ## project
 
+> Main project requirements and feature tracking live in [project.md](../project.md) at the repo root.
+
 The goal is to let a single instance of OpenSow run sessions for multiple projects and different worktrees per project.
 
 ### api

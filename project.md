@@ -127,81 +127,70 @@ Given all collected information and current time of year:
 The crop data subsgent must return and store data in following format for each
 plant whether when each plant is provided by user or when part of the suggestions.
 
+```json
 {
-"id": "34178c73-feb1-4d06-bfc6-2c66d8b6c6c7",
-"name": "Purple Italian Globe, Artichoke Seeds",
-"speciesTaxonomyAndHabit": {
-"commonName": "Artichoke",
-"scientificName": "Cynara scolymus",
-"family": "Asteraceae",
-"bestCulinaryUse": "Hearts, steaming/roasting, dips",
-"growthHabit": "Rosette/Root",
-"productionStyle": "Indeterminate",
-"sunExposure": "Full Sun",
-"sunHours": 6,
-"idealLocation": "Open Garden",
-"companions": [
-"Beans",
-"Peas",
-"Thyme"
-],
-"antagonists": [],
-"usdaHardinessZoneMin": 7,
-"usdaHardinessZoneMax": 11
-},
-"spacingAndDimensions": {
-"rowSpacing": 60,
-"plantSpacing": 48.0,
-"expectedSpread": 48,
-"expectedHeight": 60
-},
-"seedStartingIndoors": {
-"sowAnchor": "Last",
-"sowWeeksRelativeToFrost": [
--10,
--8
-],
-"soilMix": "Sterile Seed Starter",
-"soilTempMin": 60,
-"soilTempMax": 75,
-"stratification": "None",
-"seedingDepth": 0.25,
-"lightForGermination": "Irrelevant",
-"daysToGermination": [
-10,
-21
-]
-},
-"seedStartingDirectSowOutdoors": {
-"sowAnchor": "Last",
-"sowWeeksRelativeToFrost": null,
-"soilTempMin": 60,
-"soilTempMax": 75,
-"sowSeedingDepth": 0.25
-},
-"transitionPottingUp": {
-"pottingUpCue": "2nd set true leaves",
-"nutrientNeeds": "Move to nutrient-dense potting soil; vernalize (expose to 50°F) for 10 days if growing as annual"
-},
-"transplantingOutdoors": {
-"transplantTiming": "2 weeks after last frost",
-"plantingDepth": "Crown Level",
-"soilTemp": 55,
-"hardeningNote": true
-},
-"cultivationAndMaintenance": {
-"wateringNeeds": "Moderate",
-"fertilizerVegetative": "Balanced",
-"fertilizerFloweringFruiting": "Phosphorus/Potassium-Heavy",
-"fertilizerFrequency": "Monthly"
-},
-"harvestAndSeedSaving": {
-"daysToMaturity": [
-120,
-150
-],
-"harvestIndicator": "Buds 3+ inches across, tight/closed; cut with 1-3 inches stem",
-"seedSavingMethod": "Dry on plant",
-"seedHarvestCue": "Allow select buds to fully flower; harvest dry seed heads"
+  "id": "34178c73-feb1-4d06-bfc6-2c66d8b6c6c7",
+  "name": "Purple Italian Globe, Artichoke Seeds",
+  "speciesTaxonomyAndHabit": {
+    "commonName": "Artichoke",
+    "scientificName": "Cynara scolymus",
+    "family": "Asteraceae",
+    "bestCulinaryUse": "Hearts, steaming/roasting, dips",
+    "growthHabit": "Rosette/Root",
+    "productionStyle": "Indeterminate",
+    "sunExposure": "Full Sun",
+    "sunHours": 6,
+    "idealLocation": "Open Garden",
+    "companions": ["Beans", "Peas", "Thyme"],
+    "antagonists": [],
+    "usdaHardinessZoneMin": 7,
+    "usdaHardinessZoneMax": 11
+  },
+  "spacingAndDimensions": {
+    "rowSpacing": 60,
+    "plantSpacing": 48.0,
+    "expectedSpread": 48,
+    "expectedHeight": 60
+  },
+  "seedStartingIndoors": {
+    "sowAnchor": "Last",
+    "sowWeeksRelativeToFrost": [-10, -8],
+    "soilMix": "Sterile Seed Starter",
+    "soilTempMin": 60,
+    "soilTempMax": 75,
+    "stratification": "None",
+    "seedingDepth": 0.25,
+    "lightForGermination": "Irrelevant",
+    "daysToGermination": [10, 21]
+  },
+  "seedStartingDirectSowOutdoors": {
+    "sowAnchor": "Last",
+    "sowWeeksRelativeToFrost": null,
+    "soilTempMin": 60,
+    "soilTempMax": 75,
+    "sowSeedingDepth": 0.25
+  },
+  "transitionPottingUp": {
+    "pottingUpCue": "2nd set true leaves",
+    "nutrientNeeds": "Move to nutrient-dense potting soil; vernalize (expose to 50°F) for 10 days if growing as annual"
+  },
+  "transplantingOutdoors": {
+    "transplantTiming": "2 weeks after last frost",
+    "plantingDepth": "Crown Level",
+    "soilTemp": 55,
+    "hardeningNote": true
+  },
+  "cultivationAndMaintenance": {
+    "wateringNeeds": "Moderate",
+    "fertilizerVegetative": "Balanced",
+    "fertilizerFloweringFruiting": "Phosphorus/Potassium-Heavy",
+    "fertilizerFrequency": "Monthly"
+  },
+  "harvestAndSeedSaving": {
+    "daysToMaturity": [120, 150],
+    "harvestIndicator": "Buds 3+ inches across, tight/closed; cut with 1-3 inches stem",
+    "seedSavingMethod": "Dry on plant",
+    "seedHarvestCue": "Allow select buds to fully flower; harvest dry seed heads"
+  }
 }
-}
+```
