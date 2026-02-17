@@ -32,8 +32,6 @@
   <a href="README.br.md">Português (Brasil)</a>
 </p>
 
-[![OpenSow Terminal UI](packages/web/src/assets/lander/screenshot.png)](https://opensow.ai)
-
 ---
 
 ### Instalacja
@@ -55,24 +53,6 @@ nix run nixpkgs#opensow           # lub github:atasrophic/opensow dla najnowszej
 
 > [!TIP]
 > Przed instalacją usuń wersje starsze niż 0.1.x.
-
-### Aplikacja desktopowa (BETA)
-
-OpenSow jest także dostępny jako aplikacja desktopowa. Pobierz ją bezpośrednio ze strony [releases](https://github.com/atasrophic/opensow/releases) lub z [opensow.ai/download](https://opensow.ai/download).
-
-| Platforma             | Pobieranie                            |
-| --------------------- | ------------------------------------- |
-| macOS (Apple Silicon) | `opensow-desktop-darwin-aarch64.dmg` |
-| macOS (Intel)         | `opensow-desktop-darwin-x64.dmg`     |
-| Windows               | `opensow-desktop-windows-x64.exe`    |
-| Linux                 | `.deb`, `.rpm` lub AppImage           |
-
-```bash
-# macOS (Homebrew)
-brew install --cask opensow-desktop
-# Windows (Scoop)
-scoop bucket add extras; scoop install extras/opensow-desktop
-```
 
 #### Katalog instalacji
 

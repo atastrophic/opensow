@@ -32,8 +32,6 @@
   <a href="README.br.md">Português (Brasil)</a>
 </p>
 
-[![OpenSow Terminal UI](packages/web/src/assets/lander/screenshot.png)](https://opensow.ai)
-
 ---
 
 ### التثبيت
@@ -55,24 +53,6 @@ nix run nixpkgs#opensow           # او github:atasrophic/opensow لاحدث ف
 
 > [!TIP]
 > احذف الاصدارات الاقدم من 0.1.x قبل التثبيت.
-
-### تطبيق سطح المكتب (BETA)
-
-يتوفر OpenSow ايضا كتطبيق سطح مكتب. قم بالتنزيل مباشرة من [صفحة الاصدارات](https://github.com/atasrophic/opensow/releases) او من [opensow.ai/download](https://opensow.ai/download).
-
-| المنصة                | التنزيل                               |
-| --------------------- | ------------------------------------- |
-| macOS (Apple Silicon) | `opensow-desktop-darwin-aarch64.dmg` |
-| macOS (Intel)         | `opensow-desktop-darwin-x64.dmg`     |
-| Windows               | `opensow-desktop-windows-x64.exe`    |
-| Linux                 | `.deb` او `.rpm` او AppImage          |
-
-```bash
-# macOS (Homebrew)
-brew install --cask opensow-desktop
-# Windows (Scoop)
-scoop bucket add extras; scoop install extras/opensow-desktop
-```
 
 #### مجلد التثبيت
 

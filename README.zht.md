@@ -32,8 +32,6 @@
   <a href="README.br.md">Português (Brasil)</a>
 </p>
 
-[![OpenSow Terminal UI](packages/web/src/assets/lander/screenshot.png)](https://opensow.ai)
-
 ---
 
 ### 安裝
@@ -55,24 +53,6 @@ nix run nixpkgs#opensow           # 或使用 github:atasrophic/opensow 以取�
 
 > [!TIP]
 > 安裝前請先移除 0.1.x 以前的舊版本。
-
-### 桌面應用程式 (BETA)
-
-OpenSow 也提供桌面版應用程式。您可以直接從 [發佈頁面 (releases page)](https://github.com/atasrophic/opensow/releases) 或 [opensow.ai/download](https://opensow.ai/download) 下載。
-
-| 平台                  | 下載連結                              |
-| --------------------- | ------------------------------------- |
-| macOS (Apple Silicon) | `opensow-desktop-darwin-aarch64.dmg` |
-| macOS (Intel)         | `opensow-desktop-darwin-x64.dmg`     |
-| Windows               | `opensow-desktop-windows-x64.exe`    |
-| Linux                 | `.deb`, `.rpm`, 或 AppImage           |
-
-```bash
-# macOS (Homebrew Cask)
-brew install --cask opensow-desktop
-# Windows (Scoop)
-scoop bucket add extras; scoop install extras/opensow-desktop
-```
 
 #### 安裝目錄
 

@@ -9,10 +9,6 @@
     "opensow#test": {
       "dependsOn": ["^build"],
       "outputs": []
-    },
-    "@opensow-ai/app#test": {
-      "dependsOn": ["^build"],
-      "outputs": []
     }
   }
 }
