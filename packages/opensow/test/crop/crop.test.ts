@@ -1,4 +1,5 @@
 import { describe, expect, test, afterAll } from "bun:test"
+import z from "zod"
 import { Crop } from "../../src/crop/crop"
 import { Storage } from "../../src/storage/storage"
 import { Log } from "../../src/util/log"
@@ -97,6 +98,33 @@ function minimal(overrides?: Partial<Crop.Info>) {
     ...overrides,
   })
 }
+
+describe("Crop JSON Schema", () => {
+  function collectArrays(obj: Record<string, any>, path = ""): Array<{ path: string; schema: any }> {
+    const results: Array<{ path: string; schema: any }> = []
+    if (!obj || typeof obj !== "object") return results
+    if (obj.type === "array") results.push({ path, schema: obj })
+    for (const branch of [...(obj.anyOf ?? []), ...(obj.oneOf ?? []), ...(obj.allOf ?? [])]) {
+      results.push(...collectArrays(branch, path))
+    }
+    if (obj.properties) {
+      for (const [key, val] of Object.entries(obj.properties)) {
+        results.push(...collectArrays(val as Record<string, any>, path ? `${path}.${key}` : key))
+      }
+    }
+    if (obj.items) results.push(...collectArrays(obj.items as Record<string, any>, `${path}[]`))
+    return results
+  }
+
+  test("all array fields have items defined", () => {
+    const schema = z.toJSONSchema(Crop.Info)
+    const arrays = collectArrays(schema as Record<string, any>)
+    expect(arrays.length).toBeGreaterThan(0)
+    for (const entry of arrays) {
+      expect(entry.schema.items).toBeDefined()
+    }
+  })
+})
 
 describe("Crop schema validation", () => {
   test("valid full record parses", () => {

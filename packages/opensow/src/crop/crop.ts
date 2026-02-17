@@ -35,20 +35,20 @@ export namespace Crop {
 
   export const SeedStartingIndoors = z.object({
     sowAnchor: Anchor,
-    sowWeeksRelativeToFrost: z.tuple([z.number().int(), z.number().int()]).nullable(),
+    sowWeeksRelativeToFrost: z.array(z.number().int()).length(2).nullable(),
     soilMix: z.string(),
     soilTempMin: z.number().positive(),
     soilTempMax: z.number().positive(),
     stratification: z.string(),
     seedingDepth: z.number().positive(),
     lightForGermination: z.string(),
-    daysToGermination: z.tuple([z.number().int().positive(), z.number().int().positive()]),
+    daysToGermination: z.array(z.number().int().positive()).length(2),
   })
   export type SeedStartingIndoors = z.infer<typeof SeedStartingIndoors>
 
   export const SeedStartingOutdoors = z.object({
     sowAnchor: Anchor,
-    sowWeeksRelativeToFrost: z.tuple([z.number().int(), z.number().int()]).nullable(),
+    sowWeeksRelativeToFrost: z.array(z.number().int()).length(2).nullable(),
     soilTempMin: z.number().positive(),
     soilTempMax: z.number().positive(),
     sowSeedingDepth: z.number().positive(),
@@ -78,7 +78,7 @@ export namespace Crop {
   export type Cultivation = z.infer<typeof Cultivation>
 
   export const Harvest = z.object({
-    daysToMaturity: z.tuple([z.number().int().positive(), z.number().int().positive()]),
+    daysToMaturity: z.array(z.number().int().positive()).length(2),
     harvestIndicator: z.string(),
     seedSavingMethod: z.string(),
     seedHarvestCue: z.string(),
