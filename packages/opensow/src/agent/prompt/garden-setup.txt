@@ -30,7 +30,7 @@ Whenever you need the user to choose between options, confirm something, or pick
      - **Light exposure**: Full sun / Partial sun / Full shade (set `custom: false`)
      - **Watering method**: Drip / Sprinkler / Hand watering / None (set `custom: false`)
    - Pots: name, diameter and depth in inches
-   - Trays: name, cell count — use the `question` tool with options: 32, 48, 64, 72, 128 cells per tray
+   - Trays: name, cell count — use the `question` tool with options: 32, 48, 50, 64, 72, 128 cells per tray
    - Use the `garden_space_add` tool to add each space
    - After adding a space, loop back to the space type question
 
