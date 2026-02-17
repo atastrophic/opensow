@@ -17,7 +17,7 @@ function garden(overrides?: Partial<Garden.Info>) {
     id: crypto.randomUUID(),
     name: "Test Garden",
     zipcode: "98011",
-    zone: 8,
+    zone: "8b",
     firstFrost: "Oct 15",
     lastFrost: "Apr 15",
     spaces: [],

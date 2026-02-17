@@ -28,8 +28,8 @@ function taxonomy(overrides?: Partial<Crop.Taxonomy>): Crop.Taxonomy {
     idealLocation: "Open Garden",
     companions: ["Beans", "Peas"],
     antagonists: [],
-    usdaHardinessZoneMin: 7,
-    usdaHardinessZoneMax: 11,
+    usdaHardinessZoneMin: "7a",
+    usdaHardinessZoneMax: "11b",
     ...overrides,
   })
 }
@@ -147,14 +147,14 @@ describe("Crop schema validation", () => {
   test("zone range min > max rejected", () => {
     const result = Crop.Taxonomy.safeParse({
       ...taxonomy(),
-      usdaHardinessZoneMin: 11,
-      usdaHardinessZoneMax: 7,
+      usdaHardinessZoneMin: "11a",
+      usdaHardinessZoneMax: "7b",
     })
     expect(result.success).toBe(false)
   })
 
   test("zone range min <= max accepted", () => {
-    const result = Crop.Taxonomy.safeParse(taxonomy({ usdaHardinessZoneMin: 5, usdaHardinessZoneMax: 9 }))
+    const result = Crop.Taxonomy.safeParse(taxonomy({ usdaHardinessZoneMin: "5a", usdaHardinessZoneMax: "9b" }))
     expect(result.success).toBe(true)
   })
 

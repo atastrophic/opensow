@@ -15,7 +15,7 @@ function garden(overrides?: Partial<Garden.Info>) {
     id: crypto.randomUUID(),
     name: "Test Garden",
     zipcode: "98011",
-    zone: 8,
+    zone: "8b",
     firstFrost: "Oct 15",
     lastFrost: "Apr 15",
     spaces: [],
@@ -123,7 +123,7 @@ describe("Preference persistence", () => {
 
 describe("Recommend context", () => {
   test("garden context readable for recommendations", async () => {
-    const g = garden({ name: "Backyard", zone: 8 })
+    const g = garden({ name: "Backyard", zone: "8b" })
     await write("garden", [g.id], g)
     const s = season(g.id, { gardenerType: "chef", engagement: "standard" })
     await write("season", [g.id, s.id], s)
@@ -131,7 +131,7 @@ describe("Recommend context", () => {
     const gardens = await GardenStorage.list()
     const found = gardens.find((x) => x.id === g.id)
     expect(found).toBeDefined()
-    expect(found!.zone).toBe(8)
+    expect(found!.zone).toBe("8b")
 
     const active = await SeasonStorage.active(g.id)
     expect(active).toBeDefined()

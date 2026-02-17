@@ -15,7 +15,7 @@ function garden(overrides?: Partial<Garden.Info>) {
     id: crypto.randomUUID(),
     name: "Test Garden",
     zipcode: "98011",
-    zone: 8,
+    zone: "8b",
     firstFrost: "Oct 15",
     lastFrost: "Apr 15",
     spaces: [],
@@ -48,13 +48,13 @@ afterAll(async () => {
 
 describe("Window tool logic", () => {
   test("garden context readable for window calculation", async () => {
-    const g = garden({ name: "Backyard", zone: 8, lastFrost: "Apr 15", firstFrost: "Oct 15" })
+    const g = garden({ name: "Backyard", zone: "8b", lastFrost: "Apr 15", firstFrost: "Oct 15" })
     await write("garden", [g.id], g)
     const s = season(g.id)
     await write("season", [g.id, s.id], s)
 
     const read = await GardenStorage.read(g.id)
-    expect(read.zone).toBe(8)
+    expect(read.zone).toBe("8b")
     expect(read.lastFrost).toBe("Apr 15")
     expect(read.firstFrost).toBe("Oct 15")
 

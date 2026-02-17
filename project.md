@@ -143,8 +143,8 @@ plant whether when each plant is provided by user or when part of the suggestion
     "idealLocation": "Open Garden",
     "companions": ["Beans", "Peas", "Thyme"],
     "antagonists": [],
-    "usdaHardinessZoneMin": 7,
-    "usdaHardinessZoneMax": 11
+    "usdaHardinessZoneMin": "7a",
+    "usdaHardinessZoneMax": "11b"
   },
   "spacingAndDimensions": {
     "rowSpacing": 60,

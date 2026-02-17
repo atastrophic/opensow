@@ -9,7 +9,7 @@ export const GardenCreateTool = Tool.define("garden_create", {
   parameters: z.object({
     name: z.string().describe("A friendly name for the garden"),
     zipcode: z.string().describe("US ZIP code for location-based frost dates and zone"),
-    zone: z.number().int().describe("USDA hardiness zone number"),
+    zone: z.string().describe("USDA hardiness zone (e.g. '8b', '6a', '10a')"),
     firstFrost: z.string().describe("Approximate first frost date (e.g. 2024-10-15)"),
     lastFrost: z.string().describe("Approximate last frost date (e.g. 2025-04-15)"),
   }),

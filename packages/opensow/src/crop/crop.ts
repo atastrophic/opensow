@@ -2,6 +2,13 @@ import z from "zod"
 import { BusEvent } from "../bus/bus-event"
 
 export namespace Crop {
+  // 1a=1, 1b=2, 2a=3, ... 13a=25, 13b=26
+  function zoneOrd(zone: string) {
+    const match = zone.match(/^(\d+)([ab])?$/i)
+    if (!match) return 0
+    return (parseInt(match[1]) - 1) * 2 + (match[2]?.toLowerCase() === "b" ? 2 : 1)
+  }
+
   export const Taxonomy = z
     .object({
       commonName: z.string(),
@@ -15,10 +22,10 @@ export namespace Crop {
       idealLocation: z.string(),
       companions: z.string().array(),
       antagonists: z.string().array(),
-      usdaHardinessZoneMin: z.number().int().min(1).max(13),
-      usdaHardinessZoneMax: z.number().int().min(1).max(13),
+      usdaHardinessZoneMin: z.string().describe("USDA hardiness zone (e.g. '3a', '7b')"),
+      usdaHardinessZoneMax: z.string().describe("USDA hardiness zone (e.g. '11a', '13b')"),
     })
-    .refine((v) => v.usdaHardinessZoneMin <= v.usdaHardinessZoneMax, {
+    .refine((v) => zoneOrd(v.usdaHardinessZoneMin) <= zoneOrd(v.usdaHardinessZoneMax), {
       message: "usdaHardinessZoneMin must be <= usdaHardinessZoneMax",
     })
   export type Taxonomy = z.infer<typeof Taxonomy>

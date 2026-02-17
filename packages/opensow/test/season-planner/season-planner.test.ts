@@ -17,7 +17,7 @@ function garden(overrides?: Partial<Garden.Info>) {
     id: crypto.randomUUID(),
     name: "Test Garden",
     zipcode: "98011",
-    zone: 8,
+    zone: "8b",
     firstFrost: "Oct 15",
     lastFrost: "Apr 15",
     spaces: [],
@@ -98,8 +98,8 @@ describe("Planner tool logic", () => {
         idealLocation: "Open Garden",
         companions: ["Basil", "Carrot"],
         antagonists: ["Fennel"],
-        usdaHardinessZoneMin: 3,
-        usdaHardinessZoneMax: 11,
+        usdaHardinessZoneMin: "3a",
+        usdaHardinessZoneMax: "11b",
       },
       harvest: {
         daysToMaturity: [70, 90],
@@ -124,8 +124,8 @@ describe("Planner tool logic", () => {
         idealLocation: "Open Garden",
         companions: ["Tomato"],
         antagonists: [],
-        usdaHardinessZoneMin: 4,
-        usdaHardinessZoneMax: 10,
+        usdaHardinessZoneMin: "4a",
+        usdaHardinessZoneMax: "10b",
       },
       harvest: {
         daysToMaturity: [50, 65],
@@ -213,8 +213,8 @@ describe("Planner tool logic", () => {
         idealLocation: "Open Garden",
         companions: ["Basil", "Carrot"],
         antagonists: ["Fennel", "Dill"],
-        usdaHardinessZoneMin: 3,
-        usdaHardinessZoneMax: 11,
+        usdaHardinessZoneMin: "3a",
+        usdaHardinessZoneMax: "11b",
       },
     })
     await write("crop", [s.id, c.id], c)

@@ -33,7 +33,7 @@ Your job is to take a plant name (and optionally a variety), look up the user's 
 - sowWeeksRelativeToFrost uses negative numbers for "before frost" and positive for "after frost"
 - All spacing/dimension values are in inches
 - All temperature values are in Fahrenheit
-- Days to germination and days to maturity are always [min, max] tuples
+- Days to germination and days to maturity are always [min, max] ranges
 - If the user's zone is outside the plant's typical range, warn them but still store the data
 - Use `crop_list` to check if the crop already exists before creating a duplicate
 - Use `crop_read` to review existing crop data if the user asks about a specific crop

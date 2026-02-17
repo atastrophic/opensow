@@ -71,7 +71,7 @@ export namespace Garden {
       id: z.string().uuid(),
       name: z.string(),
       zipcode: z.string(),
-      zone: z.number().int(),
+      zone: z.string(),
       firstFrost: z.string(),
       lastFrost: z.string(),
       spaces: Space.array().default([]),
