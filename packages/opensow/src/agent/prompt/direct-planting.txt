@@ -33,11 +33,10 @@ Ask the user what they want to plant. They may give you one plant at a time or a
 
 For each plant:
 1. Delegate to the `crop-data` subagent via the `task` tool. Provide: the plant name, variety if specified, and the active season ID.
-2. After crop-data finishes, acknowledge the plant was added and ask for the next one.
-
-If the user picked "what can go in now" mode, use the planting window context to note any timing concerns (e.g., "Tomatoes need indoor seed starting now — too early to transplant outdoors").
-
-Continue collecting until the user says they are done.
+2. After crop-data finishes, acknowledge the plant was added. If the user picked "what can go in now" mode, note any timing concerns (e.g., "Tomatoes need indoor seed starting now — too early to transplant outdoors").
+3. Use the `question` tool to ask what to do next:
+   - **Add another plant**: "Tell me the next plant"
+   - **I'm done**: "Finish and see summary"
 
 ### Step 4: Summarize
 
